@@ -13,10 +13,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{color-scheme:dark;--bg:#070b14;--panel:#0c1423;--panel2:#101c30;--line:rgba(95,157,255,.16);--text:#eaf2ff;--muted:#91a4c1;--blue:#36a3ff;--cyan:#53e2ff;--glow:0 0 34px rgba(40,145,255,.18);--mono:"Space Mono",monospace;--fa:"Vazirmatn",sans-serif}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--fa);line-height:1.8;overflow-x:hidden}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px;overflow-x:clip;overflow-y:auto}body{margin:0;min-height:100%;max-width:100%;background:var(--bg);color:var(--text);font-family:var(--fa);line-height:1.8;overflow-x:clip;overflow-y:auto}
     body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 78% 8%,rgba(0,119,255,.16),transparent 34%),radial-gradient(ellipse at 12% 48%,rgba(0,225,255,.07),transparent 30%),linear-gradient(rgba(66,132,220,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(66,132,220,.035) 1px,transparent 1px);background-size:auto,auto,42px 42px,42px 42px}
     body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.2));opacity:.35}
-    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.mono{font-family:var(--mono);direction:ltr;unicode-bidi:embed}.accent{color:var(--cyan);text-shadow:0 0 22px rgba(83,226,255,.3)}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin-inline:auto;min-width:0}.mono{font-family:var(--mono);direction:ltr;unicode-bidi:embed}.accent{color:var(--cyan);text-shadow:0 0 22px rgba(83,226,255,.3)}
     .nav{position:sticky;top:0;z-index:10;background:rgba(7,11,20,.82);backdrop-filter:blur(22px);border-bottom:1px solid rgba(95,157,255,.13);box-shadow:0 8px 35px rgba(0,0,0,.16)}.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font:700 17px var(--mono);direction:ltr;color:#fff;letter-spacing:-1px}.brand b{color:var(--cyan)}.links{display:flex;gap:26px;align-items:center;color:var(--muted);font-size:13px}.links a:hover{color:var(--cyan)}.nav-cta,.btn{border:1px solid rgba(83,226,255,.45);background:linear-gradient(135deg,rgba(34,137,255,.18),rgba(83,226,255,.06));color:#dff8ff;border-radius:9px;padding:10px 16px;font:600 12px var(--fa);transition:.25s;display:inline-flex;align-items:center;justify-content:center;gap:8px}.nav-cta:hover,.btn:hover{transform:translateY(-3px);box-shadow:var(--glow);border-color:var(--cyan)}
     .hero{min-height:690px;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:64px;padding-top:78px;padding-bottom:90px;position:relative}.hero:before{content:"";position:absolute;width:440px;height:440px;left:-150px;top:70px;border-radius:50%;background:radial-gradient(circle,rgba(0,145,255,.14),transparent 68%);filter:blur(10px);pointer-events:none}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);font:11px var(--mono);letter-spacing:1.5px;direction:ltr}.dot{width:7px;height:7px;background:#4af0b5;border-radius:50%;box-shadow:0 0 12px #4af0b5}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.2;margin:22px 0 18px;font-weight:900;letter-spacing:-2.5px;text-wrap:balance}.hero h1 .latin{display:block;font:700 clamp(29px,5vw,55px) var(--mono);direction:ltr;letter-spacing:-3px;color:#fff;text-shadow:0 0 30px rgba(54,163,255,.32)}.hero p{color:var(--muted);font-size:16px;max-width:590px;margin:0 0 28px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn.primary{background:linear-gradient(110deg,#0878d9,#18b8d6);border:0;color:#03101c;font-weight:800}.hero-meta{display:flex;gap:24px;margin-top:38px;color:var(--muted);font:10px var(--mono);direction:ltr;flex-wrap:wrap}.hero-meta span:before{content:"▹";color:var(--cyan);margin-right:8px}
     .terminal{position:relative;background:linear-gradient(145deg,rgba(17,31,52,.95),rgba(8,15,27,.96));border:1px solid rgba(83,160,255,.25);border-radius:16px;box-shadow:0 25px 90px rgba(0,0,0,.38),var(--glow);overflow:hidden;transform:perspective(900px) rotateY(-5deg) rotateX(2deg)}.terminal:before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(83,226,255,.5),transparent 45%,rgba(54,163,255,.25));mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none}.term-head{height:46px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#7188a9;font:10px var(--mono);direction:ltr}.lights{display:flex;gap:6px}.lights i{width:7px;height:7px;border-radius:50%;background:#35506e}.lights i:first-child{background:#ff6b78}.lights i:nth-child(2){background:#ffc75e}.lights i:nth-child(3){background:#45dba2}.term-body{padding:28px 25px 32px;font:12px/2.2 var(--mono);direction:ltr;color:#9bb1d0;min-height:260px}.term-body .cmd{color:#56e5ff}.term-body .value{color:#f0f7ff}.term-body .comment{color:#617c9f}.cursor{display:inline-block;width:7px;height:14px;background:var(--cyan);vertical-align:middle;animation:blink 1s steps(2) infinite}@keyframes blink{50%{opacity:0}}
@@ -60,7 +60,7 @@
         <div style="border-top:1px solid var(--line);padding-top:15px;display:grid;gap:13px">
           <div><div class="code-label" style="margin:0 0 3px">CORE SKILLS</div><div style="font-size:12px;color:var(--text)">Python · SQLite · APIs · Git · GitHub</div></div>
           <div><div class="code-label" style="margin:0 0 3px">AREAS OF INTEREST</div><div style="font-size:12px;color:var(--text)">Artificial Intelligence · Automation · Software Development</div></div>
-          <div><div class="code-label" style="margin:0 0 3px">CERTIFICATIONS</div><div style="font-size:12px;color:var(--text)">Advanced Python · Advanced Artificial Intelligence</div></div>
+          
         </div>
       </div>   </div>
 
@@ -139,20 +139,10 @@
       </div>
     </section>
 
-    <section id="certificates">
-      <div class="wrap">
-        <div class="section-top reveal"><div><div class="kicker">04 / CERTIFICATIONS</div><h2>گواهینامه‌ها</h2></div><p>گواهینامه‌های آموزشی در حوزه برنامه‌نویسی و هوش مصنوعی.</p></div>
-        <div class="certs">
-          <div class="panel cert reveal"><div class="cert-icon">⌘</div><div><strong>Advanced Python</strong><small>برنامه‌نویسی پیشرفته پایتون · شایگان</small></div></div>
-          <div class="panel cert reveal"><div class="cert-icon">✳</div><div><strong>Advanced Artificial Intelligence</strong><small>هوش مصنوعی پیشرفته · شایگان</small></div></div>
-        </div>
-      </div>
-    </section>
-
     <section id="contact">
       <div class="wrap">
         <div class="contact reveal">
-          <div><div class="kicker">05 / CONTACT</div><h2>اطلاعات تماس</h2><p>پروفایل GitHub و مخازن عمومی پروژه‌ها.</p></div>
+          <div><div class="kicker">04 / CONTACT</div><h2>اطلاعات تماس</h2><p>پروفایل GitHub و مخازن عمومی پروژه‌ها.</p></div>
           <a class="btn primary" href="https://github.com/TahaDev24" target="_blank" rel="noopener">ارتباط در GitHub ↗</a>
         </div>
       </div>
