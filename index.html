@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b14">
+  <meta name="description" content="وب‌سایت رسمی طاها حصارکی؛ توسعه‌دهنده پایتون، سازنده ابزارها، بات‌ها و پروژه‌های نرم‌افزاری.">
+  <meta property="og:title" content="TahaDev24 — Developer Portfolio">
+  <meta property="og:description" content="ساختن ایده‌ها، خط‌به‌خط کد.">
+  <title>TahaDev24 | Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#070b14;--panel:#0c1423;--panel2:#101c30;--line:rgba(95,157,255,.16);--text:#eaf2ff;--muted:#91a4c1;--blue:#36a3ff;--cyan:#53e2ff;--glow:0 0 34px rgba(40,145,255,.18);--mono:"Space Mono",monospace;--fa:"Vazirmatn",sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--fa);line-height:1.8;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 78% 8%,rgba(0,119,255,.16),transparent 34%),radial-gradient(ellipse at 12% 48%,rgba(0,225,255,.07),transparent 30%),linear-gradient(rgba(66,132,220,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(66,132,220,.035) 1px,transparent 1px);background-size:auto,auto,42px 42px,42px 42px}
+    body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;background:linear-gradient(transparent 50%,rgba(0,0,0,.08) 50%);background-size:100% 4px;opacity:.16}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.mono{font-family:var(--mono);direction:ltr;unicode-bidi:embed}.accent{color:var(--cyan);text-shadow:0 0 22px rgba(83,226,255,.3)}
+    .nav{position:sticky;top:0;z-index:10;background:rgba(7,11,20,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font:700 17px var(--mono);direction:ltr;color:#fff;letter-spacing:-1px}.brand b{color:var(--cyan)}.links{display:flex;gap:26px;align-items:center;color:var(--muted);font-size:13px}.links a:hover{color:var(--cyan)}.nav-cta,.btn{border:1px solid rgba(83,226,255,.45);background:linear-gradient(135deg,rgba(34,137,255,.18),rgba(83,226,255,.06));color:#dff8ff;border-radius:9px;padding:10px 16px;font:600 12px var(--fa);transition:.25s;display:inline-flex;align-items:center;justify-content:center;gap:8px}.nav-cta:hover,.btn:hover{transform:translateY(-3px);box-shadow:var(--glow);border-color:var(--cyan)}
+    .hero{min-height:650px;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:54px;padding-top:65px;padding-bottom:80px}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);font:11px var(--mono);letter-spacing:1.5px;direction:ltr}.dot{width:7px;height:7px;background:#4af0b5;border-radius:50%;box-shadow:0 0 12px #4af0b5}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.2;margin:22px 0 15px;font-weight:900;letter-spacing:-2px}.hero h1 .latin{display:block;font:700 clamp(29px,5vw,55px) var(--mono);direction:ltr;letter-spacing:-3px;color:#fff;text-shadow:0 0 30px rgba(54,163,255,.32)}.hero p{color:var(--muted);font-size:16px;max-width:590px;margin:0 0 28px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn.primary{background:linear-gradient(110deg,#0878d9,#18b8d6);border:0;color:#03101c;font-weight:800}.hero-meta{display:flex;gap:24px;margin-top:38px;color:var(--muted);font:10px var(--mono);direction:ltr;flex-wrap:wrap}.hero-meta span:before{content:"▹";color:var(--cyan);margin-right:8px}
+    .terminal{position:relative;background:linear-gradient(145deg,rgba(17,31,52,.95),rgba(8,15,27,.96));border:1px solid rgba(83,160,255,.25);border-radius:16px;box-shadow:0 25px 90px rgba(0,0,0,.38),var(--glow);overflow:hidden;transform:perspective(900px) rotateY(-5deg) rotateX(2deg)}.terminal:before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(83,226,255,.5),transparent 45%,rgba(54,163,255,.25));mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none}.term-head{height:46px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#7188a9;font:10px var(--mono);direction:ltr}.lights{display:flex;gap:6px}.lights i{width:7px;height:7px;border-radius:50%;background:#35506e}.lights i:first-child{background:#ff6b78}.lights i:nth-child(2){background:#ffc75e}.lights i:nth-child(3){background:#45dba2}.term-body{padding:28px 25px 32px;font:12px/2.2 var(--mono);direction:ltr;color:#9bb1d0;min-height:260px}.term-body .cmd{color:#56e5ff}.term-body .value{color:#f0f7ff}.term-body .comment{color:#617c9f}.cursor{display:inline-block;width:7px;height:14px;background:var(--cyan);vertical-align:middle;animation:blink 1s steps(2) infinite}@keyframes blink{50%{opacity:0}}
+    section{padding:78px 0}.section-top{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:30px}.kicker{color:var(--cyan);font:10px var(--mono);direction:ltr;letter-spacing:2px}.section-top h2{font-size:30px;margin:7px 0 0}.section-top p{color:var(--muted);font-size:13px;margin:0;max-width:420px}.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.panel{background:linear-gradient(145deg,rgba(16,29,49,.86),rgba(9,16,29,.9));border:1px solid var(--line);border-radius:14px;padding:25px}.panel p{color:var(--muted);font-size:14px;margin:0}.code-label{font:10px var(--mono);color:#6783a8;direction:ltr;margin-bottom:14px}.code-line{font:12px/2 var(--mono);direction:ltr;color:#b8c9e2}.code-line .key{color:#60d9ff}.code-line .str{color:#9be7b4}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.stat{padding:17px;border:1px solid var(--line);border-radius:11px;background:rgba(5,13,25,.55)}.stat strong{display:block;color:var(--cyan);font:700 22px var(--mono);direction:ltr}.stat span{color:var(--muted);font-size:11px}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.project{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:255px;transition:.25s}.project:hover{transform:translateY(-5px);border-color:rgba(83,226,255,.45);box-shadow:var(--glow)}.project:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(0,146,255,.09);filter:blur(45px);top:-100px;left:-70px;pointer-events:none}.project-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.project-icon{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:rgba(42,151,255,.12);border:1px solid rgba(83,226,255,.2);font:17px var(--mono);color:var(--cyan)}.tag{font:9px var(--mono);color:#7fdfff;border:1px solid rgba(83,226,255,.22);border-radius:5px;padding:4px 7px;direction:ltr}.project h3{font-size:19px;margin:18px 0 6px}.project p{font-size:12px;color:var(--muted);margin:0 0 20px;flex:1}.tech{font:9px var(--mono);direction:ltr;color:#718eb2;line-height:2.2}.project-link{margin-top:15px;color:var(--cyan);font-size:12px;display:flex;gap:7px;align-items:center}.project-link:hover{color:white}
+    .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.skill{padding:18px 14px;text-align:center;border:1px solid var(--line);border-radius:11px;background:rgba(12,22,38,.72)}.skill b{display:block;font:12px var(--mono);direction:ltr;color:#dceaff;margin-bottom:5px}.skill span{font-size:10px;color:var(--muted)}.certs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.cert{display:flex;align-items:center;gap:14px}.cert-icon{width:44px;height:44px;flex:none;display:grid;place-items:center;border-radius:10px;background:rgba(83,226,255,.1);color:var(--cyan);font-size:20px}.cert strong{font-size:13px;display:block}.cert small{color:var(--muted);font-size:10px}
+    .contact{border:1px solid rgba(83,226,255,.24);background:radial-gradient(ellipse at 85% 20%,rgba(0,144,255,.14),transparent 45%),#0a1423;border-radius:16px;padding:35px;display:flex;justify-content:space-between;align-items:center;gap:25px}.contact h2{font-size:25px;margin:0 0 5px}.contact p{color:var(--muted);font-size:12px;margin:0}.footer{padding:28px 0 35px;border-top:1px solid var(--line);color:#6e83a0;font:10px var(--mono);direction:ltr;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.footer a{color:#8fcfff}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;gap:38px;min-height:auto;padding-top:75px}.terminal{max-width:560px;width:100%;margin:auto;transform:none}.about-grid{grid-template-columns:1fr}.skills{grid-template-columns:repeat(2,1fr)}.section-top{align-items:start;flex-direction:column}.links{gap:14px}.nav-cta{display:none}}
+    @media(max-width:560px){.wrap{width:min(100% - 28px,1120px)}.nav-inner{height:62px}.links{gap:11px;font-size:11px}.links a:nth-child(2){display:none}.brand{font-size:14px}.hero{padding-top:58px;padding-bottom:50px}.hero h1{font-size:43px}.hero h1 .latin{font-size:30px}.hero p{font-size:14px}.hero-meta{gap:12px;font-size:9px}.term-body{padding:20px 15px;font-size:10px}.cards,.certs{grid-template-columns:1fr}section{padding:58px 0}.section-top h2{font-size:25px}.panel{padding:20px}.contact{padding:25px;align-items:flex-start;flex-direction:column}.contact h2{font-size:21px}.footer{font-size:9px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home">TAHA<b>DEV</b>24<span class="accent">_</span></a>
+      <nav class="links" aria-label="ناوبری اصلی">
+        <a href="#about">درباره من</a><a href="#projects">پروژه‌ها</a><a href="#skills">مهارت‌ها</a><a href="#contact">ارتباط</a>
+      </nav>
+      <a class="nav-cta" href="https://github.com/TahaDev24" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dot"></span> AVAILABLE FOR NEW IDEAS</div>
+        <h1>سلام، من طاها هستم<span class="latin">DEVELOPER<span class="accent">_</span></span></h1>
+        <p>توسعه‌دهنده پایتون و سازنده پروژه‌های نرم‌افزاری؛ علاقه‌مند به ساخت ابزارهای کاربردی، بات‌ها و تجربه‌های تعاملی با ترکیب کدنویسی و هوش مصنوعی.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">مشاهده پروژه‌ها <span>↙</span></a>
+          <a class="btn" href="https://github.com/TahaDev24" target="_blank" rel="noopener">نمایش پروفایل گیت‌هاب ↗</a>
+        </div>
+        <div class="hero-meta"><span>PYTHON</span><span>SOFTWARE</span><span>AI & AUTOMATION</span></div>
+      </div>
+      <div class="terminal" aria-label="پنجره کد نمایشی">
+        <div class="term-head"><span>taha@dev: ~/portfolio</span><span class="lights"><i></i><i></i><i></i></span></div>
+        <div class="term-body">
+          <div class="comment"># A little about this developer</div>
+          <div><span class="cmd">class</span> <span class="value">Developer</span>:</div>
+          <div>&nbsp;&nbsp;name = <span class="str">"Taha Hassarki"</span></div>
+          <div>&nbsp;&nbsp;role = <span class="str">"Python Developer"</span></div>
+          <div>&nbsp;&nbsp;focus = [</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"Software Projects"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"AI & Automation"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"Creative Development"</span></div>
+          <div>&nbsp;&nbsp;]</div>
+          <div class="comment">&nbsp;# turning ideas into working code</div>
+          <div><span class="cmd">>>> </span><span class="value">build_something_great()</span> <span class="cursor"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-top reveal"><div><div class="kicker">01 / ABOUT</div><h2>درباره من</h2></div><p>کدنویسی برای من راهی برای تبدیل ایده‌ها به ابزارها و تجربه‌های واقعی است.</p></div>
+        <div class="about-grid">
+          <div class="panel reveal">
+            <div class="code-label">// WHO I AM</div>
+            <p>من طاها حصارکی هستم؛ توسعه‌دهنده‌ای علاقه‌مند به پایتون، هوش مصنوعی و ساخت نرم‌افزار. روی پروژه‌هایی مثل ابزارهای تحلیل کد، بات‌های تعاملی و بازی‌های تحت وب کار می‌کنم. تمرکزم روی یادگیری مداوم، حل مسئله و ساخت چیزهایی است که واقعاً قابل استفاده باشند.</p>
+          </div>
+          <div class="stats reveal">
+            <div class="stat"><strong>PY</strong><span>Python Development</span></div>
+            <div class="stat"><strong>AI</strong><span>Artificial Intelligence</span></div>
+            <div class="stat"><strong>WEB</strong><span>Interactive Web Projects</span></div>
+            <div class="stat"><strong>BOT</strong><span>Bots & Automation</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-top reveal"><div><div class="kicker">02 / SELECTED WORK</div><h2>پروژه‌های منتخب</h2></div><p>چند نمونه از پروژه‌هایی که روی آن‌ها کار کرده‌ام؛ برای دیدن کد و جزئیات هرکدام وارد مخزن شوید.</p></div>
+        <div class="cards">
+          <article class="panel project reveal">
+            <div class="project-head"><div class="project-icon">N/O</div><span class="tag">GAME DEVELOPMENT</span></div>
+            <h3>NEON OVERDRIVE</h3>
+            <p>یک بازی پلتفرمر ریتمیک تحت وب با ۱۰ منطقه، موانع چالش‌برانگیز، سیستم پیشرفت و موسیقی و افکت‌های صوتی تولیدشده در مرورگر.</p>
+            <div class="tech">HTML · CSS · JAVASCRIPT · CANVAS · WEB AUDIO API</div>
+            <a class="project-link" href="https://tahadev24.github.io/NEON-OVERDRIVE/" target="_blank" rel="noopener">اجرای بازی ↗</a>
+            <a class="project-link" href="https://github.com/TahaDev24/NEON-OVERDRIVE" target="_blank" rel="noopener">مشاهده سورس کد ↗</a>
+          </article>
+          <article class="panel project reveal">
+            <div class="project-head"><div class="project-icon">PY</div><span class="tag">DEVELOPER TOOL</span></div>
+            <h3>Python Scanner</h3>
+            <p>ابزار تحلیل ایستای پروژه‌های پایتون برای بررسی ساختار کد، خطاهای نحوی، وابستگی‌ها و الگوهای احتمالی اطلاعات محرمانه؛ بدون اجرای کدهای بررسی‌شده.</p>
+            <div class="tech">PYTHON · KIVY · AST · SQLITE/JSON</div>
+            <a class="project-link" href="https://github.com/TahaDev24/Python-Scanner" target="_blank" rel="noopener">مشاهده مخزن ↗</a>
+          </article>
+          <article class="panel project reveal">
+            <div class="project-head"><div class="project-icon">HTML</div><span class="tag">WEB DEVELOPMENT</span></div>
+            <h3>HTML Projects</h3>
+            <p>مجموعه‌ای از پروژه‌های تعاملی و بازی‌های مرورگری؛ از ماجراجویی دوبعدی جومونگ تا بازی استراتژیک The Last Crown.</p>
+            <div class="tech">HTML · CSS · JAVASCRIPT · CANVAS</div>
+            <a class="project-link" href="https://github.com/TahaDev24/HTML-Projects" target="_blank" rel="noopener">مشاهده پروژه‌ها ↗</a>
+          </article>
+          <article class="panel project reveal">
+            <div class="project-head"><div class="project-icon">PY/DB</div><span class="tag">SOFTWARE & BOTS</span></div>
+            <h3>Python Projects</h3>
+            <p>مخزن پروژه‌های پایتون با تمرکز بر توسعه نرم‌افزار، بات‌ها، کار با API، پایگاه داده و خودکارسازی فرایندها.</p>
+            <div class="tech">PYTHON · SQLITE · API · AUTOMATION</div>
+            <a class="project-link" href="https://github.com/TahaDev24/Python-Projects" target="_blank" rel="noopener">مشاهده مخزن ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-top reveal"><div><div class="kicker">03 / TOOLKIT</div><h2>مهارت‌ها و ابزارها</h2></div><p>فناوری‌هایی که در پروژه‌ها و مسیر یادگیری‌ام با آن‌ها کار می‌کنم.</p></div>
+        <div class="skills">
+          <div class="skill reveal"><b>PYTHON</b><span>برنامه‌نویسی و توسعه</span></div>
+          <div class="skill reveal"><b>SQLITE</b><span>مدیریت داده</span></div>
+          <div class="skill reveal"><b>HTML / CSS</b><span>طراحی وب</span></div>
+          <div class="skill reveal"><b>JAVASCRIPT</b><span>توسعه تعاملی</span></div>
+          <div class="skill reveal"><b>REST APIs</b><span>اتصال سرویس‌ها</span></div>
+          <div class="skill reveal"><b>GIT / GITHUB</b><span>مدیریت نسخه</span></div>
+          <div class="skill reveal"><b>AI / ML</b><span>مفاهیم هوش مصنوعی</span></div>
+          <div class="skill reveal"><b>AUTOMATION</b><span>بات و خودکارسازی</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates">
+      <div class="wrap">
+        <div class="section-top reveal"><div><div class="kicker">04 / LEARNING</div><h2>گواهینامه‌ها</h2></div><p>دوره‌های تخصصی گذرانده‌شده در مؤسسه آموزشی شایگان.</p></div>
+        <div class="certs">
+          <div class="panel cert reveal"><div class="cert-icon">⌘</div><div><strong>Advanced Python</strong><small>برنامه‌نویسی پیشرفته پایتون · شایگان</small></div></div>
+          <div class="panel cert reveal"><div class="cert-icon">✳</div><div><strong>Advanced Artificial Intelligence</strong><small>هوش مصنوعی پیشرفته · شایگان</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact reveal">
+          <div><div class="kicker">05 / LET'S CONNECT</div><h2>ایده‌ای برای ساختن داری؟</h2><p>برای دیدن پروژه‌ها، بررسی کدها یا ارتباط درباره همکاری، از گیت‌هاب من بازدید کن.</p></div>
+          <a class="btn primary" href="https://github.com/TahaDev24" target="_blank" rel="noopener">ارتباط در GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap footer"><span>© <span id="year"></span> TAHADEV24 · BUILT WITH CODE</span><a href="#home">BACK TO TOP ↑</a></footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const items = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      items.forEach((item) => observer.observe(item));
+    } else {
+      items.forEach((item) => item.classList.add("visible"));
+    }
+  </script>
+</body>
+</html>
