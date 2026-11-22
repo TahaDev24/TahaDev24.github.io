@@ -1,5 +1,5 @@
-<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#030405"><title>TAHA HESARAKI WORKSPACE</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='24' fill='%23101827'/%3E%3Cpath d='M48 12 80 30v36L48 84 16 66V30z' fill='none' stroke='%2358def5' stroke-width='5'/%3E%3C/svg%3E">
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#030405"><title>طاها حصارکی - توسعه دهنده پایتون</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23080a0c'/%3E%3Cpath d='M16 18h32M32 18v29' fill='none' stroke='%23c9cdd1' stroke-width='5' stroke-linecap='square'/%3E%3C/svg%3E">
 <style>
 
 :root{color-scheme:dark;--line:rgba(255,255,255,.14);--soft:rgba(255,255,255,.075);--text:#f2f2ef;--muted:#92928d;font-family:"Vazirmatn","Tahoma",system-ui,sans-serif}*{box-sizing:border-box}html{background:#000!important;color-scheme:dark;scroll-behavior:smooth}body{margin:0;min-height:100vh;background:#000!important;color:var(--text);font-size:13px;overflow-x:hidden}button,input,textarea,select{font:inherit;color:inherit}button{cursor:pointer}body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 75% 0%,rgba(255,255,255,.045),transparent 32%),radial-gradient(ellipse at 5% 85%,rgba(255,255,255,.025),transparent 36%),#000}
@@ -84,14 +84,17 @@ main{padding:0 clamp(18px,3vw,42px);background:transparent}
 footer.hint{border-color:var(--line);color:#65717a}
 @media(max-width:1000px){.side{width:235px;flex-basis:235px}}
 @media(max-width:760px){
- .side{position:relative;top:auto;height:auto;padding:15px 14px 10px;background:rgba(4,6,8,.96);border:0;border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+ .shell{flex-direction:column;width:100%;}
+ .side{position:relative;top:auto;width:100%;flex:0 0 auto;height:auto;padding:15px 14px 10px;background:rgba(4,6,8,.96);border:0;border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
  .brand{padding:0 5px 12px}
  .brand small{margin-right:10px;margin-left:0}
+ .side nav{display:flex;flex-wrap:wrap;gap:5px;width:100%;}
+ .side .nav{flex:1 1 105px;width:auto;justify-content:center;margin:0;padding:12px 9px;white-space:nowrap;}
  .nav.active{box-shadow:inset 0 -2px #aeb8c1}
- main{padding:0 16px}
- .top{height:66px}
+ main{width:100%;min-width:0;min-height:calc(100vh - 150px);padding:0 16px}
+ .top{width:100%;height:66px}
 }
-@media(max-width:420px){main{padding:0 12px}}
+@media(max-width:420px){main{padding:0 12px}.side .nav{flex-basis:calc(50% - 5px);font-size:11px}}
 
 </style></head><body><div class="ambient" aria-hidden="true"></div><canvas id="silver-field" aria-hidden="true"></canvas><div class="shell"><aside class="side"><div class="brand">◇ TAHA HESARAKI<small>N E X U S</small></div><label>فضای کاری</label><div class="form"><select id="workspace" class="field"></select><button class="btn" id="newws">＋</button></div><nav><button class="nav active" data-page="dashboard"><i>◈</i>داشبورد</button><button class="nav" data-page="projects"><i>▦</i>پروژه‌ها</button><button class="nav" data-page="studio"><i>⌘</i>محیط کدنویسی</button><button class="nav" data-page="files"><i>▤</i>مدیریت فایل‌ها</button><button class="nav" data-page="analytics"><i>⌁</i>گزارش‌ها</button></nav><div class="bottom"><span class="dot"></span>ذخیره‌سازی محلی<br><br>اطلاعات در همین مرورگر و دستگاه باقی می‌ماند</div></aside><main><header class="top"><div><b>طاها حصارکی / <span id="section">داشبورد</span></b><small>محیط کاری شخصی</small></div><div class="actions"><button class="btn" id="backup">⇩ پشتیبان‌گیری</button></div></header><section class="view" id="view">Loading TAHA HESARAKI…</section><footer class="hint">ابزار شخصی طاها حصارکی • نسخه ۱٫۰</footer></main></div><div id="toast"></div><input id="importer" type="file" accept=".json,.txt,.md,.csv" hidden>
 <script>
