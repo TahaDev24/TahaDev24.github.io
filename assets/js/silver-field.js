@@ -1,107 +1,132 @@
 (() => {
   "use strict";
-  const canvas = document.getElementById("silver-field");
-  const ctx = canvas && canvas.getContext("2d", { alpha: true, desynchronized: true });
-  if (!canvas || !ctx) return;
-
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const coarse = window.matchMedia("(pointer: coarse)");
-  const state = { width: 0, height: 0, dpr: 1, particles: [], raf: 0, last: 0, pointerX: 0, pointerY: 0, targetX: 0, targetY: 0, visible: true, running: false };
-  const rand = (a, b) => a + Math.random() * (b - a);
-  const countFor = () => {
-    const area = innerWidth * innerHeight;
-    const base = coarse.matches ? 34 : 78;
-    return Math.max(18, Math.min(coarse.matches ? 48 : 112, Math.round(base * Math.min(1.2, area / (1280 * 800)))));
-  };
-  const makeParticle = (initial = false) => {
-    const depth = Math.pow(Math.random(), 1.55);
-    const radius = rand(.35, 1.15) + depth * 1.7;
-    return {
-      x: rand(0, state.width), y: initial ? rand(0, state.height) : rand(-25, -5),
-      vx: rand(-.12, .12) * (.25 + depth), vy: rand(.055, .24) * (.4 + depth),
-      radius, depth, alpha: rand(.13, .36) + depth * .47,
-      phase: rand(0, Math.PI * 2), spin: rand(-.012, .012),
-      shape: Math.random() > .73 ? "flake" : "grain", length: rand(2, 7) * (.4 + depth),
-      glow: depth > .7
-    };
-  };
-  function resize() {
-    const dpr = Math.min(devicePixelRatio || 1, coarse.matches ? 1.35 : 1.8);
-    state.width = innerWidth; state.height = innerHeight; state.dpr = dpr;
-    canvas.width = Math.round(state.width * dpr); canvas.height = Math.round(state.height * dpr);
-    canvas.style.width = state.width + "px"; canvas.style.height = state.height + "px";
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const count = countFor();
-    while (state.particles.length < count) state.particles.push(makeParticle(true));
-    if (state.particles.length > count) state.particles.length = count;
-  }
-  function drawParticle(p, time, driftX, driftY) {
-    const shimmer = .78 + Math.sin(time * .0007 + p.phase) * .22;
-    const alpha = p.alpha * shimmer;
-    const x = p.x + driftX * p.depth * 10;
-    const y = p.y + driftY * p.depth * 10;
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(Math.sin(time * .00025 + p.phase) * .3);
-    if (p.glow) {
-      ctx.shadowBlur = 8 * p.depth;
-      ctx.shadowColor = "rgba(235,235,230,.55)";
+  const rand = (a,b) => a + Math.random() * (b-a);
+
+  // Ambient field: fine metallic dust drifting through the whole page.
+  const field = document.getElementById("silver-field");
+  const fctx = field && field.getContext("2d", {alpha:true, desynchronized:true});
+  if (field && fctx) {
+    const s = {w:0,h:0,dpr:1,items:[],raf:0,last:0,px:0,py:0,tx:0,ty:0,visible:true,running:false};
+    const count = () => Math.min(coarse.matches ? 90 : 190, Math.max(coarse.matches ? 48 : 100, Math.round(innerWidth*innerHeight/(coarse.matches?10500:6800))));
+    function make(initial=true) {
+      const depth = Math.pow(Math.random(),1.7);
+      return {x:rand(0,s.w),y:initial?rand(0,s.h):rand(-20,-3),z:depth,r:rand(.25,1.05)+depth*1.25,
+        vx:rand(-.13,.13)*(0.25+depth),vy:rand(.035,.18)*(0.35+depth),phase:rand(0,6.28),tw:rand(.4,1.2),angle:rand(0,6.28),length:rand(2,7)*(0.3+depth),kind:Math.random()<.22?"shard":"dust"};
     }
-    if (p.shape === "flake") {
-      const g = ctx.createLinearGradient(-p.length, -p.length, p.length, p.length);
-      g.addColorStop(0, "rgba(255,255,255,0)");
-      g.addColorStop(.45, "rgba(244,244,239," + alpha + ")");
-      g.addColorStop(1, "rgba(125,125,120,0)");
-      ctx.strokeStyle = g; ctx.lineWidth = .45 + p.depth * .45;
-      ctx.beginPath(); ctx.moveTo(-p.length, -p.length * .2); ctx.lineTo(p.length, p.length * .2); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(0, -p.length * .45); ctx.lineTo(0, p.length * .45); ctx.stroke();
-    } else {
-      const grad = ctx.createRadialGradient(-p.radius * .35, -p.radius * .4, 0, 0, 0, p.radius * 1.7);
-      grad.addColorStop(0, "rgba(255,255,255," + Math.min(1, alpha + .25) + ")");
-      grad.addColorStop(.38, "rgba(200,200,195," + alpha + ")");
-      grad.addColorStop(1, "rgba(100,100,96,0)");
-      ctx.fillStyle = grad;
-      ctx.beginPath(); ctx.arc(0, 0, p.radius * 1.7, 0, Math.PI * 2); ctx.fill();
-      if (p.depth > .72) {
-        ctx.strokeStyle = "rgba(255,255,255," + (alpha * .3) + ")";
-        ctx.lineWidth = .35; ctx.beginPath(); ctx.moveTo(-p.radius * 2.8, 0); ctx.lineTo(p.radius * 2.8, 0); ctx.stroke();
+    function resize() {
+      s.w=innerWidth;s.h=innerHeight;s.dpr=Math.min(devicePixelRatio||1,coarse.matches?1.35:1.7);
+      field.width=Math.round(s.w*s.dpr);field.height=Math.round(s.h*s.dpr);field.style.width=s.w+"px";field.style.height=s.h+"px";
+      fctx.setTransform(s.dpr,0,0,s.dpr,0,0);
+      const n=count();while(s.items.length<n)s.items.push(make());s.items.length=n;
+    }
+    function draw(p,t) {
+      const shimmer=.5+.5*Math.sin(t*.0008*p.tw+p.phase);
+      const alpha=(.12+p.z*.42)*(.48+shimmer*.52);
+      const x=p.x+s.px*p.z*11,y=p.y+s.py*p.z*11;
+      fctx.save();fctx.translate(x,y);fctx.rotate(p.angle+Math.sin(t*.0002+p.phase)*.3);
+      if(p.kind==="shard") {
+        fctx.shadowBlur=p.z*8;fctx.shadowColor="rgba(202,218,230,.55)";
+        const g=fctx.createLinearGradient(-p.length,0,p.length,0);
+        g.addColorStop(0,"rgba(150,168,182,0)");g.addColorStop(.5,"rgba(222,232,239,"+alpha+")");g.addColorStop(1,"rgba(150,168,182,0)");
+        fctx.strokeStyle=g;fctx.lineWidth=.45+p.z*.65;fctx.beginPath();fctx.moveTo(-p.length,0);fctx.lineTo(p.length,0);fctx.stroke();
+      } else {
+        const g=fctx.createRadialGradient(-p.r*.3,-p.r*.3,0,0,0,p.r*2.1);
+        g.addColorStop(0,"rgba(235,242,247,"+Math.min(.9,alpha+.18)+")");g.addColorStop(.38,"rgba(167,185,199,"+alpha+")");g.addColorStop(1,"rgba(100,119,135,0)");
+        fctx.fillStyle=g;fctx.beginPath();fctx.arc(0,0,p.r*2.1,0,Math.PI*2);fctx.fill();
+      }
+      fctx.restore();
+    }
+    function frame(t) {
+      if(!s.running)return;
+      const dt=Math.min(34,t-(s.last||t));s.last=t;fctx.clearRect(0,0,s.w,s.h);
+      s.px+=(s.tx-s.px)*.025;s.py+=(s.ty-s.py)*.025;
+      for(const p of s.items) {
+        if(!reduceMotion.matches){p.x+=p.vx*dt*.055;p.y+=p.vy*dt*.055;p.angle+=p.vx*.002;
+          if(p.y>s.h+12||p.x<-20||p.x>s.w+20){Object.assign(p,make(false));p.x=rand(0,s.w);}}
+        draw(p,t);
+      }
+      s.raf=requestAnimationFrame(frame);
+    }
+    function start(){if(s.running||document.hidden||!s.visible||reduceMotion.matches)return;s.running=true;s.last=0;s.raf=requestAnimationFrame(frame);}
+    function stop(){s.running=false;cancelAnimationFrame(s.raf);}
+    resize();if(reduceMotion.matches){for(const p of s.items)draw(p,0);}else start();
+    addEventListener("resize",resize,{passive:true});
+    addEventListener("pointermove",e=>{if(!coarse.matches){s.tx=(e.clientX/innerWidth-.5)*2;s.ty=(e.clientY/innerHeight-.5)*2;}},{passive:true});
+    document.addEventListener("visibilitychange",()=>document.hidden?stop():start());
+    if("IntersectionObserver"in window){const io=new IntersectionObserver(entries=>{s.visible=entries[0].isIntersecting;s.visible?start():stop()});io.observe(field);}
+    reduceMotion.addEventListener?.("change",()=>{if(reduceMotion.matches){stop();fctx.clearRect(0,0,s.w,s.h);s.items.forEach(p=>draw(p,0));}else start();});
+  }
+
+  // Hero sculpture: a volumetric cloud of silver particles forming a rotating,
+  // irregular metallic torus with independent depth, shimmer and orbital motion.
+  const hero = document.getElementById("hero-core");
+  const ctx = hero && hero.getContext("2d",{alpha:true,desynchronized:true});
+  if(!hero||!ctx)return;
+  const h = {w:0,ht:0,dpr:1,points:[],raf:0,last:0,angle:0,visible:true,running:false,pointer:0};
+  function makePoint(i,n) {
+    const u=Math.random()*Math.PI*2;
+    const v=Math.random()*Math.PI*2;
+    const R=126+rand(-13,13),r=42+rand(-11,11);
+    const tube=r+rand(-10,10);
+    return {u,v,R,tube,seed:rand(0,6.28),size:rand(.45,1.65),alpha:rand(.2,.8),speed:rand(.00008,.00028),metal:Math.random(),spark:Math.random()<.075};
+  }
+  function setup() {
+    const rect=hero.getBoundingClientRect();h.w=rect.width;h.ht=rect.height;h.dpr=Math.min(devicePixelRatio||1,coarse.matches?1.3:1.7);
+    hero.width=Math.round(h.w*h.dpr);hero.height=Math.round(h.ht*h.dpr);ctx.setTransform(h.dpr,0,0,h.dpr,0,0);
+    const n=coarse.matches?520:1050;while(h.points.length<n)h.points.push(makePoint(h.points.length,n));h.points.length=n;
+  }
+  function project(p,t) {
+    const u=p.u,v=p.v+h.angle;
+    const R=p.R,r=p.tube+Math.sin(t*.001+p.seed)*1.6;
+    let x=(R+r*Math.cos(v))*Math.cos(u);
+    let y=(R+r*Math.cos(v))*Math.sin(u);
+    let z=r*Math.sin(v);
+    const tilt=-.48+h.pointer*.08;
+    const yy=y*Math.cos(tilt)-z*Math.sin(tilt);
+    const zz=y*Math.sin(tilt)+z*Math.cos(tilt);
+    const perspective=440/(440+zz);
+    return {x:h.w*.5+x*perspective*1.12,y:h.ht*.5+yy*perspective*.92,z:zz,perspective};
+  }
+  function drawHero(t) {
+    ctx.clearRect(0,0,h.w,h.ht);
+    const glow=ctx.createRadialGradient(h.w*.5,h.ht*.5,5,h.w*.5,h.ht*.5,Math.min(h.w,h.ht)*.48);
+    glow.addColorStop(0,"rgba(154,177,194,.10)");glow.addColorStop(.48,"rgba(103,127,145,.045)");glow.addColorStop(1,"rgba(3,5,7,0)");
+    ctx.fillStyle=glow;ctx.fillRect(0,0,h.w,h.ht);
+    const sorted=h.points.map(p=>({p,q:project(p,t)})).sort((a,b)=>a.q.z-b.q.z);
+    for(const item of sorted) {
+      const p=item.p,q=item.q;
+      const shimmer=.55+.45*Math.sin(t*.0013+p.seed);
+      const a=p.alpha*(.2+(.8*(q.perspective)))*shimmer;
+      const radius=p.size*q.perspective*(q.z>0?1.2:.8);
+      if(p.spark&&q.z>5) {
+        ctx.save();ctx.globalAlpha=a*.9;ctx.shadowBlur=10;ctx.shadowColor="rgba(211,226,237,.8)";
+        ctx.strokeStyle="rgba(224,234,241,.9)";ctx.lineWidth=.6;
+        ctx.beginPath();ctx.moveTo(q.x-radius*4,q.y);ctx.lineTo(q.x+radius*4,q.y);ctx.moveTo(q.x,q.y-radius*4);ctx.lineTo(q.x,q.y+radius*4);ctx.stroke();ctx.restore();
+      } else {
+        const light=p.metal>.52?"232,239,244":"133,154,170";
+        ctx.fillStyle="rgba("+light+","+Math.min(.95,a)+")";
+        if(q.z>0){ctx.shadowBlur=radius*5;ctx.shadowColor="rgba(177,202,219,"+(a*.55)+")";}
+        ctx.beginPath();ctx.arc(q.x,q.y,Math.max(.35,radius),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
       }
     }
+    // Three fine orbital trajectories create a readable depth reference.
+    ctx.save();ctx.translate(h.w*.5,h.ht*.5);ctx.rotate(-.34+h.angle*.08);
+    for(let k=0;k<3;k++){ctx.beginPath();ctx.ellipse(0,0,154+k*19,61+k*8,.08+k*.12,0,Math.PI*2);ctx.strokeStyle="rgba(169,190,205,"+(0.11-k*.025)+")";ctx.lineWidth=.65;ctx.stroke();}
     ctx.restore();
   }
-  function frame(time) {
-    if (!state.running) return;
-    const dt = Math.min(32, time - (state.last || time)); state.last = time;
-    ctx.clearRect(0, 0, state.width, state.height);
-    state.pointerX += (state.targetX - state.pointerX) * .025;
-    state.pointerY += (state.targetY - state.pointerY) * .025;
-    const driftX = reduceMotion.matches ? 0 : state.pointerX;
-    const driftY = reduceMotion.matches ? 0 : state.pointerY;
-    for (const p of state.particles) {
-      if (!reduceMotion.matches) {
-        p.x += p.vx * dt * .06;
-        p.y += p.vy * dt * .06;
-        p.phase += p.spin * dt;
-        if (p.y > state.height + 12 || p.x < -15 || p.x > state.width + 15) {
-          Object.assign(p, makeParticle(false));
-          p.x = rand(0, state.width);
-        }
-      }
-      drawParticle(p, time, driftX, driftY);
-    }
-    state.raf = requestAnimationFrame(frame);
+  function frame(t) {
+    if(!h.running)return;const dt=Math.min(34,t-(h.last||t));h.last=t;
+    if(!reduceMotion.matches)h.angle+=dt*.00011;
+    drawHero(t);h.raf=requestAnimationFrame(frame);
   }
-  function start() { if (state.running || document.hidden || !state.visible) return; state.running = true; state.last = 0; state.raf = requestAnimationFrame(frame); }
-  function stop() { state.running = false; cancelAnimationFrame(state.raf); }
-  resize();
-  if (!reduceMotion.matches) start(); else { state.running = true; frame(0); stop(); }
-  addEventListener("resize", resize, { passive: true });
-  addEventListener("pointermove", e => { if (!coarse.matches && !reduceMotion.matches) { state.targetX = (e.clientX / innerWidth - .5) * 2; state.targetY = (e.clientY / innerHeight - .5) * 2; } }, { passive: true });
-  document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(entries => { state.visible = entries[0].isIntersecting; state.visible ? start() : stop(); });
-    observer.observe(canvas);
-  }
-  const motionChange = () => { if (reduceMotion.matches) { stop(); ctx.clearRect(0, 0, state.width, state.height); state.particles.forEach(p => drawParticle(p, 0, 0, 0)); } else start(); };
-  reduceMotion.addEventListener?.("change", motionChange);
+  function start(){if(h.running||document.hidden||!h.visible)return;h.running=true;h.last=0;h.raf=requestAnimationFrame(frame);}
+  function stop(){h.running=false;cancelAnimationFrame(h.raf);}
+  setup();if(reduceMotion.matches)drawHero(0);else start();
+  addEventListener("resize",()=>{setup();if(reduceMotion.matches)drawHero(0)},{passive:true});
+  addEventListener("pointermove",e=>{h.pointer=(e.clientX/innerWidth-.5)*2},{passive:true});
+  if("IntersectionObserver"in window){const io=new IntersectionObserver(entries=>{h.visible=entries[0].isIntersecting;h.visible?start():stop()},{rootMargin:"100px"});io.observe(hero);}
+  document.addEventListener("visibilitychange",()=>document.hidden?stop():start());
+  reduceMotion.addEventListener?.("change",()=>{if(reduceMotion.matches){stop();drawHero(0)}else start()});
 })();
