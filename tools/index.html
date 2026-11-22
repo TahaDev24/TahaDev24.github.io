@@ -1,4 +1,4 @@
-<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><title>TAHA HESARAKI WORKSPACE</title>
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#030405"><title>TAHA HESARAKI WORKSPACE</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='24' fill='%23101827'/%3E%3Cpath d='M48 12 80 30v36L48 84 16 66V30z' fill='none' stroke='%2358def5' stroke-width='5'/%3E%3C/svg%3E">
 <style>
 
@@ -14,7 +14,86 @@ html[dir=rtl]{font-family:"Vazirmatn","Tahoma",system-ui,sans-serif}html[dir=rtl
 @media(max-width:420px){main{padding:0 12px}.nav{gap:8px;padding:9px 10px;font-size:9px}.actions .btn{padding:9px 10px;font-size:9px}.stats{gap:8px}.stat{padding:13px}.num{font-size:24px}.head h1{font-size:27px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-</style></head><body><div class="shell"><aside class="side"><div class="brand">◇ TAHA HESARAKI<small>N E X U S</small></div><label>فضای کاری</label><div class="form"><select id="workspace" class="field"></select><button class="btn" id="newws">＋</button></div><nav><button class="nav active" data-page="dashboard"><i>◈</i>داشبورد</button><button class="nav" data-page="projects"><i>▦</i>پروژه‌ها</button><button class="nav" data-page="studio"><i>⌘</i>محیط کدنویسی</button><button class="nav" data-page="files"><i>▤</i>مدیریت فایل‌ها</button><button class="nav" data-page="analytics"><i>⌁</i>گزارش‌ها</button></nav><div class="bottom"><span class="dot"></span>ذخیره‌سازی محلی<br><br>اطلاعات در همین مرورگر و دستگاه باقی می‌ماند</div></aside><main><header class="top"><div><b>طاها حصارکی / <span id="section">داشبورد</span></b><small>محیط کاری شخصی</small></div><div class="actions"><button class="btn" id="backup">⇩ پشتیبان‌گیری</button></div></header><section class="view" id="view">Loading TAHA HESARAKI…</section><footer class="hint">ابزار شخصی طاها حصارکی • نسخه ۱٫۰</footer></main></div><div id="toast"></div><input id="importer" type="file" accept=".json,.txt,.md,.csv" hidden>
+
+/* === Main-site visual language: silver / graphite workspace === */
+:root{
+ color-scheme:dark;
+ --line:rgba(190,202,212,.13);--soft:rgba(190,202,212,.09);
+ --text:#c9cdd1;--muted:#747c83;--silver:#aeb8c1;
+ font-family:Tahoma,"Segoe UI",Arial,sans-serif
+}
+html,body{background:#030405!important;color:#c9cdd1}
+body{font:400 13px/1.9 Tahoma,"Segoe UI",Arial,sans-serif}
+body:before{background:radial-gradient(ellipse at 52% 12%,rgba(137,155,171,.035),transparent 34%),#030405}
+#silver-field{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.72;mix-blend-mode:screen;display:block}
+.shell{position:relative;z-index:2;max-width:1920px;background:transparent}
+.side{position:sticky;top:0;height:100vh;align-self:flex-start;width:270px;flex-basis:270px;padding:28px 18px 20px;background:rgba(5,7,9,.9);border-left:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 10px 34px;color:#c6cdd2;font:700 11px Arial,Helvetica,sans-serif;letter-spacing:.13em}
+.brand:before{content:"TH";display:grid;place-items:center;flex:0 0 31px;width:31px;height:31px;margin:0;border:1px solid #707d88;border-radius:0;background:transparent;color:#d7dfe5;font:700 11px Arial,sans-serif;box-shadow:none}
+.brand small{display:block;margin:0 0 0 auto;color:#59636c;font:9px "Courier New",monospace;letter-spacing:.22em}
+.side label{color:#747c83;font:9px "Courier New",monospace;letter-spacing:.12em}
+.side .form{gap:7px;margin-bottom:28px}
+.side select,.field{background:#080a0c;border-color:var(--line);border-radius:0;color:#c9cdd1}
+.side select:focus,.field:focus{border-color:rgba(174,184,193,.55);background:#0b0e11;box-shadow:0 0 0 3px rgba(174,184,193,.035)}
+.nav{border-radius:0;color:#7c858d;gap:13px}
+.nav:hover{color:#d8dfe4;background:rgba(160,176,188,.045);border-color:rgba(190,202,212,.1)}
+.nav.active{color:#d8dfe4;background:linear-gradient(100deg,rgba(160,176,188,.1),rgba(160,176,188,.015));border-color:rgba(190,202,212,.16);box-shadow:inset -2px 0 #aeb8c1}
+.nav i{color:#aeb8c1}
+.bottom{border-color:var(--line);color:#65717a}
+.dot{background:#aeb8c1;box-shadow:0 0 7px rgba(174,184,193,.35)}
+main{padding:0 clamp(18px,3vw,42px);background:transparent}
+.top{height:84px;border-color:var(--line)}
+.top b{color:#c9d0d5;font-weight:600}
+.top small{color:#747c83}
+.btn,.primary,.secondary,.danger{border-radius:0;border-color:var(--line);background:linear-gradient(135deg,#101418,#07090b);color:#b8c2ca}
+.btn:hover,.secondary:hover{border-color:rgba(174,184,193,.48);background:#11171c;color:#e0e4e7}
+.primary{border-color:rgba(176,193,206,.48);background:linear-gradient(120deg,rgba(166,181,193,.2),rgba(90,104,116,.1));color:#d7dfe5}
+.primary:hover{border-color:#9eacb7;background:rgba(178,194,206,.23);color:#fff}
+.danger{border-color:rgba(210,135,135,.3);color:#d9a3a3}
+.view{max-width:1280px}
+.view:before{background:linear-gradient(90deg,transparent,rgba(190,202,212,.16),transparent)}
+.kicker{color:#7e8992;font:9px "Courier New",monospace;letter-spacing:.14em}
+.kicker:before{background:linear-gradient(90deg,#59636c,#aeb8c1)}
+.head h1{color:#c8d0d6;font-weight:750;letter-spacing:-.04em}
+.head p,.hint{color:#87929a}
+.stat,.panel,.card{border-radius:0;border-color:var(--line);background:linear-gradient(145deg,rgba(174,190,203,.055),rgba(174,190,203,.012) 62%,rgba(174,190,203,.025));box-shadow:0 14px 38px rgba(0,0,0,.2)}
+.stat:before,.panel:before,.card:before{background:linear-gradient(90deg,transparent,rgba(190,202,212,.2),transparent)}
+.stat{color:#87929a}
+.stat:after{border-color:rgba(174,190,203,.055);box-shadow:0 0 0 15px rgba(174,190,203,.012),0 0 0 31px rgba(174,190,203,.008)}
+.num{color:#d4dbe0;font-family:Arial,Helvetica,sans-serif;text-shadow:none}
+.panel h3,.card h3{color:#d0d7dc}
+.row{border-color:var(--line)}
+.row strong{color:#c9d1d7}
+.row small{color:#747f87}
+.track{background:#1a2025}
+.fill{background:linear-gradient(90deg,#667580,#b9c4cc);box-shadow:none}
+.form{border-radius:0;border-color:var(--line);background:rgba(174,190,203,.018)}
+.cards .card{transition:border-color .25s,background .25s,transform .25s}
+.card:hover{border-color:rgba(174,190,203,.32);background:linear-gradient(145deg,rgba(174,190,203,.075),rgba(174,190,203,.018));transform:translateY(-2px)}
+.tag{border-radius:0;border-color:var(--line);background:rgba(174,190,203,.025);color:#aeb8c1}
+.task{border-color:var(--line);color:#c0c8ce}
+.task input{accent-color:#aeb8c1}
+.editor{border-radius:0;border-color:rgba(190,202,212,.15);background:linear-gradient(145deg,#070a0c,#030405);color:#cbd3d9;caret-color:#dce4e9}
+.editor:focus{border-color:rgba(174,184,193,.42)}
+.preview{border-radius:0}
+.file{border-color:var(--line);background:linear-gradient(110deg,#0b0f12,#050709)}
+.file b{color:#cbd3d9}
+.file small{color:#77838c}
+.setting{border-color:var(--line);color:#c0c8ce}
+.toast{border-radius:0;border-color:rgba(190,202,212,.2);background:linear-gradient(120deg,#141a1f,#07090b);color:#e0e4e7;box-shadow:0 15px 45px rgba(0,0,0,.5)}
+footer.hint{border-color:var(--line);color:#65717a}
+@media(max-width:1000px){.side{width:235px;flex-basis:235px}}
+@media(max-width:760px){
+ .side{position:relative;top:auto;height:auto;padding:15px 14px 10px;background:rgba(4,6,8,.96);border:0;border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+ .brand{padding:0 5px 12px}
+ .brand small{margin-right:10px;margin-left:0}
+ .nav.active{box-shadow:inset 0 -2px #aeb8c1}
+ main{padding:0 16px}
+ .top{height:66px}
+}
+@media(max-width:420px){main{padding:0 12px}}
+
+</style></head><body><div class="ambient" aria-hidden="true"></div><canvas id="silver-field" aria-hidden="true"></canvas><div class="shell"><aside class="side"><div class="brand">◇ TAHA HESARAKI<small>N E X U S</small></div><label>فضای کاری</label><div class="form"><select id="workspace" class="field"></select><button class="btn" id="newws">＋</button></div><nav><button class="nav active" data-page="dashboard"><i>◈</i>داشبورد</button><button class="nav" data-page="projects"><i>▦</i>پروژه‌ها</button><button class="nav" data-page="studio"><i>⌘</i>محیط کدنویسی</button><button class="nav" data-page="files"><i>▤</i>مدیریت فایل‌ها</button><button class="nav" data-page="analytics"><i>⌁</i>گزارش‌ها</button></nav><div class="bottom"><span class="dot"></span>ذخیره‌سازی محلی<br><br>اطلاعات در همین مرورگر و دستگاه باقی می‌ماند</div></aside><main><header class="top"><div><b>طاها حصارکی / <span id="section">داشبورد</span></b><small>محیط کاری شخصی</small></div><div class="actions"><button class="btn" id="backup">⇩ پشتیبان‌گیری</button></div></header><section class="view" id="view">Loading TAHA HESARAKI…</section><footer class="hint">ابزار شخصی طاها حصارکی • نسخه ۱٫۰</footer></main></div><div id="toast"></div><input id="importer" type="file" accept=".json,.txt,.md,.csv" hidden>
 <script>
 /* Embedded database.js: IndexedDB with localStorage fallback */
 const DB="taha-personal-workspace-db",TABLES=["workspaces","projects","tasks","files","snippets"],FALL="taha-workspace-fallback-v1";let dbPromise;const MEMORY={};
@@ -29,7 +108,7 @@ const words={en:{dash:"Your workspace, in focus.",sub:"A clear view of what you 
 fa:{dash:"همه‌چیز، یک‌جا و شفاف.",sub:"نمایی روشن از پروژه‌هایی که می‌سازید و قدم بعدی شما.",projects:"با هدفمندی بسازید.",projectsub:"ایده‌ها و کارهای در حال انجام را یک‌جا مدیریت کنید.",studio:"میز کار کدنویسی.",studiosub:"کدهای HTML، CSS و JavaScript را بنویسید و پیش‌نمایش بگیرید.",files:"فایل‌هایتان، مرتب و در دسترس.",filessub:"یادداشت بسازید، فایل متنی وارد کنید و دریافت کنید.",analytics:"پیشرفت را قابل مشاهده کنید.",settings:"TAHA HESARAKI را مطابق سلیقه‌تان تنظیم کنید.",newproject:"＋ پروژهٔ جدید",name:"نام پروژه",desc:"توضیح کوتاه (اختیاری)",create:"ساخت پروژه",progress:"پیشرفت",planned:"برنامه‌ریزی‌شده",active:"در حال انجام",paused:"متوقف‌شده",completed:"تکمیل‌شده",delete:"حذف",noDesc:"توضیحی ثبت نشده است.",save:"ذخیرهٔ قطعه‌کد",download:"دریافت فایل",run:"اجرای پیش‌نمایش",live:"پیش‌نمایش زنده",newfile:"فایل جدید",filename:"نام فایل",content:"نوشتن را از اینجا شروع کنید…",import:"واردکردن فایل",backup:"خروجی پشتیبان کامل",restore:"بازیابی پشتیبان",clear:"پاک‌سازی فضای فعلی",local:"هر فضای کاری فقط در مرورگر همین دستگاه ذخیره می‌شود و همگام‌سازی ابری ندارد.",privacy:"هیچ حساب کاربری، سرور یا کلید API استفاده نمی‌شود.",task:"چه کاری باید انجام شود؟",tasks:"تابلوی وظایف",quick:"دسترسی سریع",total:"مجموع پروژه‌ها",activeCount:"پروژه‌های فعال",done:"کارهای انجام‌شده",stored:"فایل‌های ذخیره‌شده",completeRate:"درصد تکمیل وظایف",language:"زبان رابط کاربری",appearance:"ظاهر برنامه",dark:"تیرهٔ آینده‌نگر",light:"روشن"}};
 let lang="fa",wid=localStorage.getItem("nx-workspace")||"",page="dashboard",code=sessionStorage.getItem("nx-code")||`<!doctype html><html><body style="font:20px system-ui;padding:2rem;background:#0d1725;color:white"><h1>سلام!</h1><p>کد خودت را از اینجا شروع کن.</p>
 
-</body></html>`;
+<script src="/assets/js/silver-field.js?v=20261122-4" defer></script></body></html>`;
 const t=k=>words.fa[k]||k,notify=s=>{$("#toast").className="toast";$("#toast").textContent=s;setTimeout(()=>$("#toast").textContent="",2500)},all=async table=>(await getAll(table)).filter(x=>!x.workspaceId||x.workspaceId===wid);
 async function initWorkspaces(){let a=await getAll("workspaces");if(!a.length){for(let name of ["Personal","Development","NEON OVERDRIVE","AI Research"])await put("workspaces",{id:uid(),name});a=await getAll("workspaces")}if(!a.some(x=>x.id===wid))wid=a[0].id;localStorage.setItem("nx-workspace",wid);$("#workspace").innerHTML=a.map(x=>`<option value="${x.id}" ${x.id===wid?"selected":""}>${esc(x.name)}</option>`).join("")}
 function head(k,p,extra=""){return `<div class="head"><div><div class="kicker">WORKSPACE / ${page.toUpperCase()}</div><h1>${k}</h1><p>${p}</p></div>${extra}</div>`}
