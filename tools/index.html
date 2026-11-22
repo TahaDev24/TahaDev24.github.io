@@ -127,6 +127,54 @@ html[dir=rtl] .nav{text-align:right}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
+
+/* NEXUS // kinetic silver atmosphere */
+:root{--silver:#e9e9e2;--silver-dim:rgba(225,225,215,.18)}
+body{isolation:isolate}
+#nexusFX{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.88}
+.nx-aura{position:fixed;z-index:0;pointer-events:none;width:42vw;height:42vw;max-width:720px;max-height:720px;border-radius:50%;filter:blur(85px);opacity:.105;mix-blend-mode:screen;animation:auraFloat 18s ease-in-out infinite alternate}
+.nx-aura.a{top:-22vw;left:4vw;background:radial-gradient(circle,#eee,transparent 68%)}
+.nx-aura.b{bottom:-25vw;right:15vw;background:radial-gradient(circle,#aaa,transparent 68%);animation-delay:-8s}
+@keyframes auraFloat{0%{transform:translate3d(-3vw,-2vh,0) scale(.85)}100%{transform:translate3d(4vw,5vh,0) scale(1.18)}}
+body:after{z-index:0;opacity:.075}
+.shell{z-index:2}
+main:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.12;background-image:linear-gradient(rgba(220,220,210,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(220,220,210,.12) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse at 60% 40%,#000,transparent 78%);animation:gridPulse 9s ease-in-out infinite alternate}
+@keyframes gridPulse{from{opacity:.045;transform:translateY(0)}to{opacity:.16;transform:translateY(-9px)}}
+.top{overflow:hidden}
+.top:before{content:"";position:absolute;bottom:-1px;left:-35%;width:35%;height:1px;background:linear-gradient(90deg,transparent,#fff,transparent);box-shadow:0 0 15px #fff;animation:topBeam 8s linear infinite}
+@keyframes topBeam{to{left:135%}}
+.view{animation:viewArrival .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes viewArrival{from{opacity:0;transform:translateY(18px);filter:blur(5px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.stat,.panel,.card{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:panelReveal .75s both;transform-origin:50% 70%}
+.stat:nth-child(2),.card:nth-child(2){animation-delay:.07s}.stat:nth-child(3),.card:nth-child(3){animation-delay:.14s}.stat:nth-child(4),.card:nth-child(4){animation-delay:.21s}
+@keyframes panelReveal{from{opacity:0;transform:translateY(15px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.stat:after,.panel:after,.card:after{content:"";position:absolute;inset:-1px;pointer-events:none;opacity:0;background:linear-gradient(112deg,transparent 25%,rgba(255,255,245,.11) 48%,transparent 68%);transform:translateX(110%);transition:opacity .35s}
+.stat:hover:after,.panel:hover:after,.card:hover:after{opacity:1;animation:surfaceSweep 1.15s ease}
+@keyframes surfaceSweep{to{transform:translateX(-110%)}}
+.stat:hover{border-color:rgba(245,245,235,.38);box-shadow:0 10px 45px #0008,0 0 28px rgba(230,230,220,.055);transform:translateY(-4px);transition:.35s}
+.num{text-shadow:0 0 22px rgba(245,245,235,.18);transition:text-shadow .3s}
+.stat:hover .num{text-shadow:0 0 26px rgba(255,255,245,.48)}
+.kicker{position:relative;display:inline-flex;align-items:center;gap:10px}
+.kicker:before{content:"";width:22px;height:1px;background:#ddd;box-shadow:0 0 9px #ddd;animation:kickerGlow 2.6s ease-in-out infinite alternate}
+@keyframes kickerGlow{to{width:42px;opacity:.4}}
+.head h1{background:linear-gradient(100deg,#fff 0%,#aaa9a1 42%,#f7f7f1 65%,#77776f 100%);background-size:220% auto;color:transparent;background-clip:text;-webkit-background-clip:text;animation:metalText 9s linear infinite}
+@keyframes metalText{to{background-position:220% center}}
+.nav{overflow:hidden}
+.nav:after{content:"";position:absolute;top:0;bottom:0;right:-45%;width:35%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.11),transparent);transform:skewX(-18deg);transition:right .55s}
+.nav:hover:after{right:120%}
+.nav.active{box-shadow:inset -2px 0 #eee,0 0 24px rgba(235,235,225,.045)}
+.btn:active,.primary:active,.secondary:active,.nav:active{transform:scale(.97)}
+.track{position:relative}
+.fill{position:relative;overflow:hidden}
+.fill:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);transform:translateX(-100%);animation:progressGlint 3.5s ease-in-out infinite}
+@keyframes progressGlint{55%,100%{transform:translateX(120%)}}
+.editor{background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);background-size:100% 25px;caret-color:#fff}
+.toast{animation:toastIn .35s cubic-bezier(.2,.8,.2,1) both}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+::selection{background:rgba(240,240,230,.28);color:#fff}
+@media(max-width:760px){main:before{background-size:44px 44px}.nx-aura{width:75vw;height:75vw;filter:blur(65px)}}
+@media(prefers-reduced-motion:reduce){#nexusFX,.nx-aura{display:none}main:before{animation:none}.head h1{animation:none}.fill:after{animation:none}}
+
 </style></head><body><div class="shell"><aside class="side"><div class="brand">◇ TAHA HESARAKI<small>N E X U S</small></div><label>فضای کاری</label><div class="form"><select id="workspace" class="field"></select><button class="btn" id="newws">＋</button></div><nav><button class="nav active" data-page="dashboard"><i>◈</i>داشبورد</button><button class="nav" data-page="projects"><i>▦</i>پروژه‌ها</button><button class="nav" data-page="studio"><i>⌘</i>محیط کدنویسی</button><button class="nav" data-page="files"><i>▤</i>مدیریت فایل‌ها</button><button class="nav" data-page="analytics"><i>⌁</i>گزارش‌ها</button></nav><div class="bottom"><span class="dot"></span>ذخیره‌سازی محلی<br><br>اطلاعات در همین مرورگر و دستگاه باقی می‌ماند</div></aside><main><header class="top"><div><b>طاها حصارکی / <span id="section">داشبورد</span></b><small>محیط کاری شخصی</small></div><div class="actions"><button class="btn" id="backup">⇩ پشتیبان‌گیری</button></div></header><section class="view" id="view">Loading TAHA HESARAKI…</section><footer class="hint">ابزار شخصی طاها حصارکی • نسخه ۱٫۰</footer></main></div><div id="toast"></div><input id="importer" type="file" accept=".json,.txt,.md,.csv" hidden>
 <script>
 /* Embedded database.js: IndexedDB with localStorage fallback */
@@ -139,7 +187,21 @@ async function remove(t,id){try{let d=await db();await new Promise((ok,no)=>{let
 const $=s=>document.querySelector(s),uid=()=>crypto.randomUUID?.()||"nx"+Date.now()+Math.random(),esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const words={en:{dash:"Your workspace, in focus.",sub:"A clear view of what you are building and what deserves attention next.",projects:"Build with intention.",projectsub:"Track ideas, active work and milestones in one place.",studio:"A lightweight coding desk.",studiosub:"Draft HTML, CSS and JavaScript and preview it in an isolated frame.",files:"Your files, organized.",filessub:"Create local notes, import text files and download them when needed.",analytics:"Make progress visible.",settings:"Make TAHA HESARAKI yours.",newproject:"＋ New project",name:"Project name",desc:"Short description (optional)",create:"Create project",progress:"Progress",planned:"Planned",active:"In progress",paused:"Paused",completed:"Completed",delete:"Delete",noDesc:"No description added yet.",save:"Save snippet",download:"Download",run:"Run preview",live:"LIVE PREVIEW",newfile:"New file",filename:"File name",content:"Start writing something useful…",import:"Import file",backup:"Export full backup",restore:"Restore backup",clear:"Clear current workspace",local:"Each workspace is stored in this browser on this device. No cloud sync or shared login.",privacy:"No account, server or API key is used.",task:"What needs to get done?",tasks:"Task board",quick:"Quick launch",total:"Total projects",activeCount:"Active projects",done:"Tasks completed",stored:"Stored files",completeRate:"Task completion",language:"Interface language",appearance:"Appearance",dark:"Dark futuristic",light:"Light"},
 fa:{dash:"همه‌چیز، یک‌جا و شفاف.",sub:"نمایی روشن از پروژه‌هایی که می‌سازید و قدم بعدی شما.",projects:"با هدفمندی بسازید.",projectsub:"ایده‌ها و کارهای در حال انجام را یک‌جا مدیریت کنید.",studio:"میز کار کدنویسی.",studiosub:"کدهای HTML، CSS و JavaScript را بنویسید و پیش‌نمایش بگیرید.",files:"فایل‌هایتان، مرتب و در دسترس.",filessub:"یادداشت بسازید، فایل متنی وارد کنید و دریافت کنید.",analytics:"پیشرفت را قابل مشاهده کنید.",settings:"TAHA HESARAKI را مطابق سلیقه‌تان تنظیم کنید.",newproject:"＋ پروژهٔ جدید",name:"نام پروژه",desc:"توضیح کوتاه (اختیاری)",create:"ساخت پروژه",progress:"پیشرفت",planned:"برنامه‌ریزی‌شده",active:"در حال انجام",paused:"متوقف‌شده",completed:"تکمیل‌شده",delete:"حذف",noDesc:"توضیحی ثبت نشده است.",save:"ذخیرهٔ قطعه‌کد",download:"دریافت فایل",run:"اجرای پیش‌نمایش",live:"پیش‌نمایش زنده",newfile:"فایل جدید",filename:"نام فایل",content:"نوشتن را از اینجا شروع کنید…",import:"واردکردن فایل",backup:"خروجی پشتیبان کامل",restore:"بازیابی پشتیبان",clear:"پاک‌سازی فضای فعلی",local:"هر فضای کاری فقط در مرورگر همین دستگاه ذخیره می‌شود و همگام‌سازی ابری ندارد.",privacy:"هیچ حساب کاربری، سرور یا کلید API استفاده نمی‌شود.",task:"چه کاری باید انجام شود؟",tasks:"تابلوی وظایف",quick:"دسترسی سریع",total:"مجموع پروژه‌ها",activeCount:"پروژه‌های فعال",done:"کارهای انجام‌شده",stored:"فایل‌های ذخیره‌شده",completeRate:"درصد تکمیل وظایف",language:"زبان رابط کاربری",appearance:"ظاهر برنامه",dark:"تیرهٔ آینده‌نگر",light:"روشن"}};
-let lang="fa",wid=localStorage.getItem("nx-workspace")||"",page="dashboard",code=sessionStorage.getItem("nx-code")||`<!doctype html><html><body style="font:20px system-ui;padding:2rem;background:#0d1725;color:white"><h1>سلام!</h1><p>کد خودت را از اینجا شروع کن.</p></body></html>`;
+let lang="fa",wid=localStorage.getItem("nx-workspace")||"",page="dashboard",code=sessionStorage.getItem("nx-code")||`<!doctype html><html><body style="font:20px system-ui;padding:2rem;background:#0d1725;color:white"><h1>سلام!</h1><p>کد خودت را از اینجا شروع کن.</p>
+<script>
+(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+const canvas=document.createElement('canvas');canvas.id='nexusFX';document.body.prepend(canvas);
+for(const cls of ['a','b']){const orb=document.createElement('div');orb.className='nx-aura '+cls;document.body.prepend(orb)}
+const ctx=canvas.getContext('2d');if(!ctx)return;let w=0,h=0,dpr=1,pts=[],raf=0;
+const resize=()=>{dpr=Math.min(devicePixelRatio||1,1.6);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);const count=Math.min(105,Math.floor(w*h/11500));pts=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,r:.35+Math.random()*1.25,a:.16+Math.random()*.55,s:.08+Math.random()*.24,p:Math.random()*6.28}))};
+let mx=-1000,my=-1000;addEventListener('resize',resize,{passive:true});addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});resize();
+const draw=()=>{ctx.clearRect(0,0,w,h);for(let i=0;i<pts.length;i++){const p=pts[i];p.p+=.012;p.y-=p.s*.25;if(p.y<-5)p.y=h+5;const tw=(.62+.38*Math.sin(p.p))*p.a;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(238,238,230,'+tw+')';ctx.shadowBlur=8*tw;ctx.shadowColor='rgba(235,235,225,.7)';ctx.fill();ctx.shadowBlur=0;
+const dx=p.x-mx,dy=p.y-my,dist=Math.hypot(dx,dy);if(dist<135){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mx,my);ctx.strokeStyle='rgba(230,230,220,'+((1-dist/135)*.12)+')';ctx.lineWidth=.6;ctx.stroke()}
+for(let j=i+1;j<pts.length;j++){const q=pts[j],dd=Math.hypot(p.x-q.x,p.y-q.y);if(dd<88){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(220,220,210,'+((1-dd/88)*.055)+')';ctx.lineWidth=.5;ctx.stroke()}}}
+raf=requestAnimationFrame(draw)};draw();addEventListener('pagehide',()=>cancelAnimationFrame(raf),{once:true});
+})();
+</script>
+</body></html>`;
 const t=k=>words.fa[k]||k,notify=s=>{$("#toast").className="toast";$("#toast").textContent=s;setTimeout(()=>$("#toast").textContent="",2500)},all=async table=>(await getAll(table)).filter(x=>!x.workspaceId||x.workspaceId===wid);
 async function initWorkspaces(){let a=await getAll("workspaces");if(!a.length){for(let name of ["Personal","Development","NEON OVERDRIVE","AI Research"])await put("workspaces",{id:uid(),name});a=await getAll("workspaces")}if(!a.some(x=>x.id===wid))wid=a[0].id;localStorage.setItem("nx-workspace",wid);$("#workspace").innerHTML=a.map(x=>`<option value="${x.id}" ${x.id===wid?"selected":""}>${esc(x.name)}</option>`).join("")}
 function head(k,p,extra=""){return `<div class="head"><div><div class="kicker">WORKSPACE / ${page.toUpperCase()}</div><h1>${k}</h1><p>${p}</p></div>${extra}</div>`}
