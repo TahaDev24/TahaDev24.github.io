@@ -9,11 +9,11 @@
   const fctx = field && field.getContext("2d", {alpha:true, desynchronized:true});
   if (field && fctx) {
     const s = {w:0,h:0,dpr:1,items:[],raf:0,last:0,px:0,py:0,tx:0,ty:0,visible:true,running:false};
-    const count = () => Math.min(coarse.matches ? 150 : 260, Math.max(coarse.matches ? 110 : 170, Math.round(innerWidth*innerHeight/(coarse.matches?6500:4300))));
+    const count = () => Math.min(coarse.matches ? 62 : 105, Math.max(coarse.matches ? 42 : 72, Math.round(innerWidth*innerHeight/(coarse.matches?15000:11500))));
     function make(initial=true) {
       const depth = Math.pow(Math.random(),1.7);
-      return {x:rand(0,s.w),y:initial?rand(0,s.h):rand(-20,-3),z:depth,r:rand(.55,1.35)+depth*1.5,
-        vx:rand(-.13,.13)*(0.25+depth),vy:rand(.035,.18)*(0.35+depth),phase:rand(0,6.28),tw:rand(.4,1.2),angle:rand(0,6.28),length:rand(2,7)*(0.3+depth),kind:Math.random()<.22?"shard":"dust"};
+      return {x:rand(0,s.w),y:initial?rand(0,s.h):rand(-20,-3),z:depth,r:rand(.35,.8)+depth*.65,
+        vx:rand(-.13,.13)*(0.25+depth),vy:rand(.035,.18)*(0.35+depth),phase:rand(0,6.28),tw:rand(.4,1.2),angle:rand(0,6.28),length:rand(1.2,3.4)*(0.3+depth),kind:Math.random()<.22?"shard":"dust"};
     }
     function resize() {
       s.w=innerWidth;s.h=innerHeight;s.dpr=Math.min(devicePixelRatio||1,coarse.matches?1.35:1.7);
@@ -23,17 +23,17 @@
     }
     function draw(p,t) {
       const shimmer=.5+.5*Math.sin(t*.0008*p.tw+p.phase);
-      const alpha=(.28+p.z*.58)*(.55+shimmer*.45);
+      const alpha=(.08+p.z*.24)*(.72+shimmer*.28);
       const x=p.x+s.px*p.z*11,y=p.y+s.py*p.z*11;
       fctx.save();fctx.translate(x,y);fctx.rotate(p.angle+Math.sin(t*.0002+p.phase)*.3);
       if(p.kind==="shard") {
-        fctx.shadowBlur=p.z*8;fctx.shadowColor="rgba(202,218,230,.55)";
+        fctx.shadowBlur=0;
         const g=fctx.createLinearGradient(-p.length,0,p.length,0);
-        g.addColorStop(0,"rgba(150,168,182,0)");g.addColorStop(.5,"rgba(222,232,239,"+alpha+")");g.addColorStop(1,"rgba(150,168,182,0)");
+        g.addColorStop(0,"rgba(150,168,182,0)");g.addColorStop(.5,"rgba(192,205,215,"+alpha+")");g.addColorStop(1,"rgba(150,168,182,0)");
         fctx.strokeStyle=g;fctx.lineWidth=.45+p.z*.65;fctx.beginPath();fctx.moveTo(-p.length,0);fctx.lineTo(p.length,0);fctx.stroke();
       } else {
         const g=fctx.createRadialGradient(-p.r*.3,-p.r*.3,0,0,0,p.r*2.1);
-        g.addColorStop(0,"rgba(235,242,247,"+Math.min(.9,alpha+.18)+")");g.addColorStop(.38,"rgba(167,185,199,"+alpha+")");g.addColorStop(1,"rgba(100,119,135,0)");
+        g.addColorStop(0,"rgba(205,215,223,"+Math.min(.36,alpha+.08)+")");g.addColorStop(.38,"rgba(150,165,177,"+alpha+")");g.addColorStop(1,"rgba(100,119,135,0)");
         fctx.fillStyle=g;fctx.beginPath();fctx.arc(0,0,p.r*2.1,0,Math.PI*2);fctx.fill();
       }
       fctx.restore();
@@ -70,12 +70,12 @@
     const v=Math.random()*Math.PI*2;
     const R=126+rand(-13,13),r=42+rand(-11,11);
     const tube=r+rand(-10,10);
-    return {u,v,R,tube,seed:rand(0,6.28),size:rand(.65,2.0),alpha:rand(.38,.95),speed:rand(.00008,.00028),metal:Math.random(),spark:Math.random()<.075};
+    return {u,v,R,tube,seed:rand(0,6.28),size:rand(.45,1.15),alpha:rand(.22,.58),speed:rand(.00008,.00028),metal:Math.random(),spark:Math.random()<.008};
   }
   function setup() {
     const rect=hero.getBoundingClientRect();h.w=rect.width;h.ht=rect.height;h.dpr=Math.min(devicePixelRatio||1,coarse.matches?1.3:1.7);
     hero.width=Math.round(h.w*h.dpr);hero.height=Math.round(h.ht*h.dpr);ctx.setTransform(h.dpr,0,0,h.dpr,0,0);
-    const n=coarse.matches?760:1450;while(h.points.length<n)h.points.push(makePoint(h.points.length,n));h.points.length=n;
+    const n=coarse.matches?190:340;while(h.points.length<n)h.points.push(makePoint(h.points.length,n));h.points.length=n;
   }
   function project(p,t) {
     const u=p.u,v=p.v+h.angle;
@@ -91,8 +91,8 @@
   }
   function drawHero(t) {
     ctx.clearRect(0,0,h.w,h.ht);
-    const glow=ctx.createRadialGradient(h.w*.5,h.ht*.5,5,h.w*.5,h.ht*.5,Math.min(h.w,h.ht)*.48);
-    glow.addColorStop(0,"rgba(154,177,194,.10)");glow.addColorStop(.48,"rgba(103,127,145,.045)");glow.addColorStop(1,"rgba(3,5,7,0)");
+    const glow=ctx.createRadialGradient(h.w*.5,h.ht*.5,5,h.w*.5,h.ht*.5,Math.min(h.w,h.ht)*.38);
+    glow.addColorStop(0,"rgba(154,177,194,.025)");glow.addColorStop(.48,"rgba(103,127,145,.012)");glow.addColorStop(1,"rgba(3,5,7,0)");
     ctx.fillStyle=glow;ctx.fillRect(0,0,h.w,h.ht);
     const sorted=h.points.map(p=>({p,q:project(p,t)})).sort((a,b)=>a.q.z-b.q.z);
     for(const item of sorted) {
@@ -101,19 +101,19 @@
       const a=p.alpha*(.2+(.8*(q.perspective)))*shimmer;
       const radius=p.size*q.perspective*(q.z>0?1.2:.8);
       if(p.spark&&q.z>5) {
-        ctx.save();ctx.globalAlpha=a*.9;ctx.shadowBlur=10;ctx.shadowColor="rgba(211,226,237,.8)";
-        ctx.strokeStyle="rgba(224,234,241,.9)";ctx.lineWidth=.6;
+        ctx.save();ctx.globalAlpha=a*.45;ctx.shadowBlur=1;ctx.shadowColor="rgba(170,187,199,.25)";
+        ctx.strokeStyle="rgba(190,204,215,.48)";ctx.lineWidth=.6;
         ctx.beginPath();ctx.moveTo(q.x-radius*4,q.y);ctx.lineTo(q.x+radius*4,q.y);ctx.moveTo(q.x,q.y-radius*4);ctx.lineTo(q.x,q.y+radius*4);ctx.stroke();ctx.restore();
       } else {
         const light=p.metal>.52?"232,239,244":"133,154,170";
         ctx.fillStyle="rgba("+light+","+Math.min(.95,a)+")";
-        if(q.z>0){ctx.shadowBlur=radius*5;ctx.shadowColor="rgba(177,202,219,"+(a*.55)+")";}
+        if(q.z>0){ctx.shadowBlur=radius*1.2;ctx.shadowColor="rgba(177,192,204,"+(a*.16)+")";}
         ctx.beginPath();ctx.arc(q.x,q.y,Math.max(.35,radius),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
       }
     }
     // Three fine orbital trajectories create a readable depth reference.
     ctx.save();ctx.translate(h.w*.5,h.ht*.5);ctx.rotate(-.34+h.angle*.08);
-    for(let k=0;k<3;k++){ctx.beginPath();ctx.ellipse(0,0,154+k*19,61+k*8,.08+k*.12,0,Math.PI*2);ctx.strokeStyle="rgba(169,190,205,"+(0.11-k*.025)+")";ctx.lineWidth=.65;ctx.stroke();}
+    for(let k=0;k<3;k++){ctx.beginPath();ctx.ellipse(0,0,154+k*19,61+k*8,.08+k*.12,0,Math.PI*2);ctx.strokeStyle="rgba(169,190,205,"+(0.045-k*.012)+")";ctx.lineWidth=.65;ctx.stroke();}
     ctx.restore();
   }
   function frame(t) {
