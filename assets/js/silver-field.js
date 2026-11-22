@@ -12,7 +12,7 @@
     const count = () => Math.min(coarse.matches ? 90 : 190, Math.max(coarse.matches ? 48 : 100, Math.round(innerWidth*innerHeight/(coarse.matches?10500:6800))));
     function make(initial=true) {
       const depth = Math.pow(Math.random(),1.7);
-      return {x:rand(0,s.w),y:initial?rand(0,s.h):rand(-20,-3),z:depth,r:rand(.25,1.05)+depth*1.25,
+      return {x:rand(0,s.w),y:initial?rand(0,s.h):rand(-20,-3),z:depth,r:rand(.55,1.35)+depth*1.5,
         vx:rand(-.13,.13)*(0.25+depth),vy:rand(.035,.18)*(0.35+depth),phase:rand(0,6.28),tw:rand(.4,1.2),angle:rand(0,6.28),length:rand(2,7)*(0.3+depth),kind:Math.random()<.22?"shard":"dust"};
     }
     function resize() {
@@ -23,7 +23,7 @@
     }
     function draw(p,t) {
       const shimmer=.5+.5*Math.sin(t*.0008*p.tw+p.phase);
-      const alpha=(.12+p.z*.42)*(.48+shimmer*.52);
+      const alpha=(.28+p.z*.58)*(.55+shimmer*.45);
       const x=p.x+s.px*p.z*11,y=p.y+s.py*p.z*11;
       fctx.save();fctx.translate(x,y);fctx.rotate(p.angle+Math.sin(t*.0002+p.phase)*.3);
       if(p.kind==="shard") {
@@ -70,12 +70,12 @@
     const v=Math.random()*Math.PI*2;
     const R=126+rand(-13,13),r=42+rand(-11,11);
     const tube=r+rand(-10,10);
-    return {u,v,R,tube,seed:rand(0,6.28),size:rand(.45,1.65),alpha:rand(.2,.8),speed:rand(.00008,.00028),metal:Math.random(),spark:Math.random()<.075};
+    return {u,v,R,tube,seed:rand(0,6.28),size:rand(.65,2.0),alpha:rand(.38,.95),speed:rand(.00008,.00028),metal:Math.random(),spark:Math.random()<.075};
   }
   function setup() {
     const rect=hero.getBoundingClientRect();h.w=rect.width;h.ht=rect.height;h.dpr=Math.min(devicePixelRatio||1,coarse.matches?1.3:1.7);
     hero.width=Math.round(h.w*h.dpr);hero.height=Math.round(h.ht*h.dpr);ctx.setTransform(h.dpr,0,0,h.dpr,0,0);
-    const n=coarse.matches?520:1050;while(h.points.length<n)h.points.push(makePoint(h.points.length,n));h.points.length=n;
+    const n=coarse.matches?760:1450;while(h.points.length<n)h.points.push(makePoint(h.points.length,n));h.points.length=n;
   }
   function project(p,t) {
     const u=p.u,v=p.v+h.angle;
