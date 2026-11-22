@@ -188,19 +188,7 @@ const $=s=>document.querySelector(s),uid=()=>crypto.randomUUID?.()||"nx"+Date.no
 const words={en:{dash:"Your workspace, in focus.",sub:"A clear view of what you are building and what deserves attention next.",projects:"Build with intention.",projectsub:"Track ideas, active work and milestones in one place.",studio:"A lightweight coding desk.",studiosub:"Draft HTML, CSS and JavaScript and preview it in an isolated frame.",files:"Your files, organized.",filessub:"Create local notes, import text files and download them when needed.",analytics:"Make progress visible.",settings:"Make TAHA HESARAKI yours.",newproject:"＋ New project",name:"Project name",desc:"Short description (optional)",create:"Create project",progress:"Progress",planned:"Planned",active:"In progress",paused:"Paused",completed:"Completed",delete:"Delete",noDesc:"No description added yet.",save:"Save snippet",download:"Download",run:"Run preview",live:"LIVE PREVIEW",newfile:"New file",filename:"File name",content:"Start writing something useful…",import:"Import file",backup:"Export full backup",restore:"Restore backup",clear:"Clear current workspace",local:"Each workspace is stored in this browser on this device. No cloud sync or shared login.",privacy:"No account, server or API key is used.",task:"What needs to get done?",tasks:"Task board",quick:"Quick launch",total:"Total projects",activeCount:"Active projects",done:"Tasks completed",stored:"Stored files",completeRate:"Task completion",language:"Interface language",appearance:"Appearance",dark:"Dark futuristic",light:"Light"},
 fa:{dash:"همه‌چیز، یک‌جا و شفاف.",sub:"نمایی روشن از پروژه‌هایی که می‌سازید و قدم بعدی شما.",projects:"با هدفمندی بسازید.",projectsub:"ایده‌ها و کارهای در حال انجام را یک‌جا مدیریت کنید.",studio:"میز کار کدنویسی.",studiosub:"کدهای HTML، CSS و JavaScript را بنویسید و پیش‌نمایش بگیرید.",files:"فایل‌هایتان، مرتب و در دسترس.",filessub:"یادداشت بسازید، فایل متنی وارد کنید و دریافت کنید.",analytics:"پیشرفت را قابل مشاهده کنید.",settings:"TAHA HESARAKI را مطابق سلیقه‌تان تنظیم کنید.",newproject:"＋ پروژهٔ جدید",name:"نام پروژه",desc:"توضیح کوتاه (اختیاری)",create:"ساخت پروژه",progress:"پیشرفت",planned:"برنامه‌ریزی‌شده",active:"در حال انجام",paused:"متوقف‌شده",completed:"تکمیل‌شده",delete:"حذف",noDesc:"توضیحی ثبت نشده است.",save:"ذخیرهٔ قطعه‌کد",download:"دریافت فایل",run:"اجرای پیش‌نمایش",live:"پیش‌نمایش زنده",newfile:"فایل جدید",filename:"نام فایل",content:"نوشتن را از اینجا شروع کنید…",import:"واردکردن فایل",backup:"خروجی پشتیبان کامل",restore:"بازیابی پشتیبان",clear:"پاک‌سازی فضای فعلی",local:"هر فضای کاری فقط در مرورگر همین دستگاه ذخیره می‌شود و همگام‌سازی ابری ندارد.",privacy:"هیچ حساب کاربری، سرور یا کلید API استفاده نمی‌شود.",task:"چه کاری باید انجام شود؟",tasks:"تابلوی وظایف",quick:"دسترسی سریع",total:"مجموع پروژه‌ها",activeCount:"پروژه‌های فعال",done:"کارهای انجام‌شده",stored:"فایل‌های ذخیره‌شده",completeRate:"درصد تکمیل وظایف",language:"زبان رابط کاربری",appearance:"ظاهر برنامه",dark:"تیرهٔ آینده‌نگر",light:"روشن"}};
 let lang="fa",wid=localStorage.getItem("nx-workspace")||"",page="dashboard",code=sessionStorage.getItem("nx-code")||`<!doctype html><html><body style="font:20px system-ui;padding:2rem;background:#0d1725;color:white"><h1>سلام!</h1><p>کد خودت را از اینجا شروع کن.</p>
-<script>
-(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-const canvas=document.createElement('canvas');canvas.id='nexusFX';document.body.prepend(canvas);
-for(const cls of ['a','b']){const orb=document.createElement('div');orb.className='nx-aura '+cls;document.body.prepend(orb)}
-const ctx=canvas.getContext('2d');if(!ctx)return;let w=0,h=0,dpr=1,pts=[],raf=0;
-const resize=()=>{dpr=Math.min(devicePixelRatio||1,1.6);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);const count=Math.min(105,Math.floor(w*h/11500));pts=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,r:.35+Math.random()*1.25,a:.16+Math.random()*.55,s:.08+Math.random()*.24,p:Math.random()*6.28}))};
-let mx=-1000,my=-1000;addEventListener('resize',resize,{passive:true});addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});resize();
-const draw=()=>{ctx.clearRect(0,0,w,h);for(let i=0;i<pts.length;i++){const p=pts[i];p.p+=.012;p.y-=p.s*.25;if(p.y<-5)p.y=h+5;const tw=(.62+.38*Math.sin(p.p))*p.a;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(238,238,230,'+tw+')';ctx.shadowBlur=8*tw;ctx.shadowColor='rgba(235,235,225,.7)';ctx.fill();ctx.shadowBlur=0;
-const dx=p.x-mx,dy=p.y-my,dist=Math.hypot(dx,dy);if(dist<135){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mx,my);ctx.strokeStyle='rgba(230,230,220,'+((1-dist/135)*.12)+')';ctx.lineWidth=.6;ctx.stroke()}
-for(let j=i+1;j<pts.length;j++){const q=pts[j],dd=Math.hypot(p.x-q.x,p.y-q.y);if(dd<88){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(220,220,210,'+((1-dd/88)*.055)+')';ctx.lineWidth=.5;ctx.stroke()}}}
-raf=requestAnimationFrame(draw)};draw();addEventListener('pagehide',()=>cancelAnimationFrame(raf),{once:true});
-})();
-</script>
+
 </body></html>`;
 const t=k=>words.fa[k]||k,notify=s=>{$("#toast").className="toast";$("#toast").textContent=s;setTimeout(()=>$("#toast").textContent="",2500)},all=async table=>(await getAll(table)).filter(x=>!x.workspaceId||x.workspaceId===wid);
 async function initWorkspaces(){let a=await getAll("workspaces");if(!a.length){for(let name of ["Personal","Development","NEON OVERDRIVE","AI Research"])await put("workspaces",{id:uid(),name});a=await getAll("workspaces")}if(!a.some(x=>x.id===wid))wid=a[0].id;localStorage.setItem("nx-workspace",wid);$("#workspace").innerHTML=a.map(x=>`<option value="${x.id}" ${x.id===wid?"selected":""}>${esc(x.name)}</option>`).join("")}
@@ -224,4 +212,19 @@ $("#backup").onclick=backup;$("#newws").onclick=async()=>{let name=prompt("نا�
 (async()=>{await initWorkspaces();await render()})().catch(e=>{$("#view").textContent="TAHA HESARAKI could not initialize. Reload the page.";console.error(e)});
 </script>
 
+<script>
+
+(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+const canvas=document.createElement('canvas');canvas.id='nexusFX';document.body.prepend(canvas);
+for(const cls of ['a','b']){const orb=document.createElement('div');orb.className='nx-aura '+cls;document.body.prepend(orb)}
+const ctx=canvas.getContext('2d');if(!ctx)return;let w=0,h=0,dpr=1,pts=[],raf=0;
+const resize=()=>{dpr=Math.min(devicePixelRatio||1,1.6);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);const count=Math.min(105,Math.floor(w*h/11500));pts=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,r:.35+Math.random()*1.25,a:.16+Math.random()*.55,s:.08+Math.random()*.24,p:Math.random()*6.28}))};
+let mx=-1000,my=-1000;addEventListener('resize',resize,{passive:true});addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});resize();
+const draw=()=>{ctx.clearRect(0,0,w,h);for(let i=0;i<pts.length;i++){const p=pts[i];p.p+=.012;p.y-=p.s*.25;if(p.y<-5)p.y=h+5;const tw=(.62+.38*Math.sin(p.p))*p.a;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(238,238,230,'+tw+')';ctx.shadowBlur=8*tw;ctx.shadowColor='rgba(235,235,225,.7)';ctx.fill();ctx.shadowBlur=0;
+const dx=p.x-mx,dy=p.y-my,dist=Math.hypot(dx,dy);if(dist<135){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mx,my);ctx.strokeStyle='rgba(230,230,220,'+((1-dist/135)*.12)+')';ctx.lineWidth=.6;ctx.stroke()}
+for(let j=i+1;j<pts.length;j++){const q=pts[j],dd=Math.hypot(p.x-q.x,p.y-q.y);if(dd<88){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(220,220,210,'+((1-dd/88)*.055)+')';ctx.lineWidth=.5;ctx.stroke()}}}
+raf=requestAnimationFrame(draw)};draw();addEventListener('pagehide',()=>cancelAnimationFrame(raf),{once:true});
+})();
+
+</script>
 </body></html>
