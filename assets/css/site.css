@@ -509,3 +509,40 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
   .hero-typographic .hero-name .hero-name-first,
   .hero-typographic .hero-name .hero-name-last{animation:none!important}
 }
+
+
+/* Hero wordmark — larger editorial scale, left aligned */
+.hero-typographic .hero-identity{
+  width:100%;
+  align-items:flex-start;
+  text-align:left;
+}
+.hero-typographic .hero-name-wrap{
+  width:100%;
+  justify-content:flex-start;
+  align-items:flex-start;
+}
+.hero-typographic .hero-name{
+  justify-content:flex-start!important;
+  text-align:left!important;
+  font-size:clamp(58px,8.7vw,116px)!important;
+  letter-spacing:-.078em!important;
+  gap:.17em!important;
+  margin-left:0!important;
+}
+.hero-typographic .hero-divider{
+  margin-left:0!important;
+  margin-right:auto!important;
+}
+@media(max-width:760px){
+  .hero-typographic .hero-identity{align-items:flex-start}
+  .hero-typographic .hero-name{
+    font-size:clamp(32px,9.25vw,46px)!important;
+    letter-spacing:-.075em!important;
+    gap:.14em!important;
+  }
+  .hero-typographic .hero-name-wrap{justify-content:flex-start}
+}
+@media(max-width:360px){
+  .hero-typographic .hero-name{font-size:clamp(29px,8.7vw,32px)!important}
+}
