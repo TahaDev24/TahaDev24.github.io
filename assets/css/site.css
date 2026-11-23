@@ -511,92 +511,9 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
 }
 
 
-/* Hero wordmark — larger editorial scale, left aligned */
-.hero-typographic .hero-identity{
-  width:100%;
-  align-items:flex-start;
-  text-align:left;
-}
-.hero-typographic .hero-name-wrap{
-  width:100%;
-  justify-content:flex-start;
-  align-items:flex-start;
-}
-.hero-typographic .hero-name{
-  justify-content:flex-start!important;
-  text-align:left!important;
-  font-size:clamp(58px,8.7vw,116px)!important;
-  letter-spacing:-.078em!important;
-  gap:.17em!important;
-  margin-left:0!important;
-}
-.hero-typographic .hero-divider{
-  margin-left:0!important;
-  margin-right:auto!important;
-}
-@media(max-width:760px){
-  .hero-typographic .hero-identity{align-items:flex-start}
-  .hero-typographic .hero-name{
-    font-size:clamp(32px,9.25vw,46px)!important;
-    letter-spacing:-.075em!important;
-    gap:.14em!important;
-  }
-  .hero-typographic .hero-name-wrap{justify-content:flex-start}
-}
-@media(max-width:360px){
-  .hero-typographic .hero-name{font-size:clamp(29px,8.7vw,32px)!important}
-}
 
 
-/* 2026-11-23 — isolate the mobile wordmark from centered hero content */
-@media (max-width: 760px) {
-  .hero-typographic {
-    padding-top: 24px !important;
-  }
-  .hero-typographic .hero-identity {
-    display: flex;
-    flex-direction: column;
-    align-items: center !important;
-    text-align: center !important;
-  }
-  .hero-typographic .hero-name-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start !important;
-    align-items: center !important;
-  }
-  .hero-typographic .hero-name {
-    width: max-content !important;
-    max-width: 100%;
-    justify-content: flex-start !important;
-    align-items: baseline !important;
-    text-align: left !important;
-    font-size: clamp(36px, 12vw, 56px) !important;
-    letter-spacing: -.078em !important;
-    line-height: 1 !important;
-    gap: .14em !important;
-    margin: 0 !important;
-  }
-  .hero-typographic .hero-divider {
-    margin: 18px auto 17px !important;
-  }
-  .hero-typographic .hero-role,
-  .hero-typographic .hero-description,
-  .hero-typographic .hero-actions,
-  .hero-typographic .hero-signature {
-    align-self: stretch;
-    text-align: center;
-    justify-content: center;
-  }
-}
-@media (max-width: 360px) {
-  .hero-typographic .hero-name {
-    font-size: clamp(33px, 11.5vw, 41px) !important;
-  }
-}
-
-
-/* 2026-11-23 — editorial wordmark with restrained cinematic lighting */
+/* Clean hero wordmark: restrained editorial scale, left aligned, no visual takeover */
 .hero-typographic .hero-identity{
   display:flex;
   flex-direction:column;
@@ -611,44 +528,56 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
   align-items:center;
   margin:0;
 }
-.hero-typographic .hero-name-wrap:before{
+.hero-typographic .hero-name-wrap::before{
   content:"";
   position:absolute;
-  z-index:-1;
-  left:18%;
+  z-index:0;
+  left:0;
   top:50%;
-  width:72%;
+  width:min(76%,560px);
   height:145%;
   transform:translateY(-50%);
-  background:radial-gradient(ellipse,rgba(226,235,242,.13),rgba(170,190,205,.045) 38%,transparent 72%);
-  filter:blur(17px);
+  background:radial-gradient(ellipse at 42% 50%,rgba(205,215,224,.105),rgba(170,185,198,.035) 43%,transparent 74%);
+  filter:blur(19px);
   pointer-events:none;
 }
 .hero-typographic .hero-name{
+  position:relative;
+  z-index:1;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:baseline!important;
+  justify-content:flex-start!important;
   width:max-content!important;
   max-width:100%;
   margin:0!important;
-  padding:0!important;
-  justify-content:flex-start!important;
-  align-items:baseline!important;
-  gap:.14em!important;
+  padding:.06em 0 .12em!important;
+  gap:.16em!important;
   white-space:nowrap;
+  direction:ltr;
   text-align:left!important;
-  font-size:clamp(70px,7.2vw,94px)!important;
+  font-family:var(--en),Arial,sans-serif;
+  font-size:clamp(58px,6.2vw,82px)!important;
+  font-weight:800!important;
   line-height:1!important;
-  letter-spacing:-.078em!important;
-  text-shadow:0 2px 18px rgba(235,242,247,.13),0 12px 42px rgba(190,210,224,.08);
+  letter-spacing:-.075em!important;
+  text-shadow:0 2px 13px rgba(210,220,228,.10),0 9px 30px rgba(180,195,207,.055);
 }
 .hero-typographic .hero-name .hero-name-first,
 .hero-typographic .hero-name .hero-name-last{
+  display:inline!important;
   margin:0!important;
+  color:transparent!important;
   -webkit-text-stroke:0!important;
-  background:linear-gradient(180deg,#fff 0%,#d9dfe4 42%,#f4f6f8 58%,#929ba2 100%);
+  background:linear-gradient(180deg,#e9edf0 0%,#c4cbd0 48%,#929da5 100%);
   background-clip:text;
   -webkit-background-clip:text;
+  animation:none!important;
+  filter:none!important;
 }
 .hero-typographic .hero-divider{
-  margin:24px auto 19px!important;
+  margin:23px auto 18px!important;
 }
 .hero-typographic .hero-role,
 .hero-typographic .hero-description,
@@ -658,34 +587,40 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
   text-align:center;
   justify-content:center;
 }
+.hero-typographic .hero-tech-visual{
+  filter:grayscale(1);
+  opacity:.9;
+}
 @media(max-width:760px){
   .hero-typographic{
     min-height:0!important;
     align-items:flex-start!important;
-    padding:34px 0 76px!important;
+    padding:22px 0 76px!important;
   }
   .hero-typographic .hero-identity{
     width:100%;
     align-items:center!important;
+    text-align:center!important;
   }
   .hero-typographic .hero-name-wrap{
+    width:100%;
+    min-height:62px;
     justify-content:flex-start!important;
-    min-height:58px;
+    align-items:center!important;
   }
   .hero-typographic .hero-name{
-    font-size:clamp(37px,12.2vw,52px)!important;
+    font-size:clamp(42px,8.2vw,62px)!important;
     letter-spacing:-.078em!important;
-    gap:.13em!important;
+    gap:.14em!important;
   }
-  .hero-typographic .hero-name-wrap:before{
-    left:10%;
-    width:88%;
-    height:160%;
-    opacity:.85;
+  .hero-typographic .hero-name-wrap::before{
+    width:min(82%,480px);
+    height:155%;
+    opacity:.9;
   }
   .hero-typographic .hero-divider{
     width:clamp(150px,48vw,230px);
-    margin:23px auto 17px!important;
+    margin:22px auto 17px!important;
   }
   .hero-typographic .hero-role{
     font-size:clamp(15px,4.2vw,19px)!important;
@@ -718,9 +653,10 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
     margin-top:12px!important;
   }
 }
-@media(max-width:360px){
+@media(max-width:390px){
   .hero-typographic .hero-name{
-    font-size:clamp(34px,11.8vw,42px)!important;
+    font-size:clamp(39px,10.5vw,46px)!important;
+    letter-spacing:-.08em!important;
   }
   .hero-typographic .hero-actions .action{font-size:10px}
 }
