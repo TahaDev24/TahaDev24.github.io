@@ -9,7 +9,7 @@
   const fctx = field && field.getContext("2d", {alpha:true, desynchronized:true});
   if (field && fctx) {
     const s = {w:0,h:0,dpr:1,items:[],raf:0,last:0,px:0,py:0,tx:0,ty:0,visible:true,running:false};
-    const count = () => Math.min(coarse.matches ? 62 : 105, Math.max(coarse.matches ? 42 : 72, Math.round(innerWidth*innerHeight/(coarse.matches?15000:11500))));
+    const count = () => Math.min(coarse.matches ? 74 : 126, Math.max(coarse.matches ? 50 : 86, Math.round(innerWidth*innerHeight/(coarse.matches?12500:9600))));
     function make(initial=true) {
       const depth = Math.pow(Math.random(),1.7);
       return {x:rand(0,s.w),y:initial?rand(0,s.h):rand(-20,-3),z:depth,r:rand(.35,.8)+depth*.65,
