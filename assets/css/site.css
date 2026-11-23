@@ -546,3 +546,51 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
 @media(max-width:360px){
   .hero-typographic .hero-name{font-size:clamp(29px,8.7vw,32px)!important}
 }
+
+
+/* 2026-11-23 — isolate the mobile wordmark from centered hero content */
+@media (max-width: 760px) {
+  .hero-typographic {
+    padding-top: 24px !important;
+  }
+  .hero-typographic .hero-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .hero-typographic .hero-name-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
+  .hero-typographic .hero-name {
+    width: max-content !important;
+    max-width: 100%;
+    justify-content: flex-start !important;
+    align-items: baseline !important;
+    text-align: left !important;
+    font-size: clamp(36px, 12vw, 56px) !important;
+    letter-spacing: -.078em !important;
+    line-height: 1 !important;
+    gap: .14em !important;
+    margin: 0 !important;
+  }
+  .hero-typographic .hero-divider {
+    margin: 18px auto 17px !important;
+  }
+  .hero-typographic .hero-role,
+  .hero-typographic .hero-description,
+  .hero-typographic .hero-actions,
+  .hero-typographic .hero-signature {
+    align-self: stretch;
+    text-align: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 360px) {
+  .hero-typographic .hero-name {
+    font-size: clamp(33px, 11.5vw, 41px) !important;
+  }
+}
