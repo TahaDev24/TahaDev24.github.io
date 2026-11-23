@@ -199,3 +199,12 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
 @media(max-width:700px){.hero-typographic{min-height:calc(100svh - 66px);padding:70px 0 120px;align-items:center}.hero-identity{width:100%;padding-right:0}.hero-overline{gap:8px;font-size:8px;letter-spacing:.11em}.hero-overline i{margin-left:3px}.hero-name{font-size:clamp(68px,15.4vw,112px);margin-top:39px;line-height:.84}.hero-native-name{font-size:clamp(26px,7vw,34px);margin-top:29px}.hero-divider{margin:17px 0}.hero-typographic .hero-description{font-size:12px;max-width:100%;margin:13px 0 22px}.hero-side-note{display:none}.hero-typographic .hero-bottomline{bottom:31px;gap:10px;font-size:7px;letter-spacing:.045em}}
 @media(max-width:390px){.hero-typographic{padding-top:54px}.hero-name{font-size:clamp(60px,15.2vw,76px)}.hero-overline{font-size:7px;letter-spacing:.075em}.hero-typographic .hero-bottomline{font-size:6px}}
 @media(prefers-reduced-motion:reduce){.hero-typographic:before,.hero-live-dot,.hero-name-first,.hero-name-last,.hero-native-name{animation:none!important}}
+
+/* Specificity guard for the text-only identity layout */
+.hero-typographic .hero-name{display:flex;flex-direction:column;align-items:flex-start;margin:clamp(28px,5vh,54px) 0 0;font-family:var(--en),Arial,sans-serif;font-size:clamp(82px,13.5vw,174px);font-weight:700;line-height:.78;letter-spacing:-.095em;direction:ltr}
+.hero-typographic .hero-name .hero-name-first{display:block;color:#e4ebef}
+.hero-typographic .hero-name .hero-name-last{display:block;margin-top:.13em;color:#8499a8}
+.hero-typographic .hero-name .hero-name-period{display:inline;color:#c1d0da}
+.hero-typographic .hero-role{font-family:var(--fa),Tahoma,sans-serif;font-weight:500;direction:rtl;line-height:1.7}
+@media(max-width:700px){.hero-typographic .hero-name{font-size:clamp(68px,15.4vw,112px);margin-top:39px;line-height:.84}}
+@media(max-width:390px){.hero-typographic .hero-name{font-size:clamp(60px,15.2vw,76px)}}
