@@ -321,3 +321,55 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
 .hero-typographic .hero-name .hero-name-first{color:#f2f6f8}
 .hero-typographic .hero-name .hero-name-last{margin-top:.17em;color:transparent;-webkit-text-stroke:1px rgba(210,226,237,.9);background:linear-gradient(110deg,#71818d 4%,#f0f5f8 29%,#879aa8 53%,#e8f0f5 76%,#667985 100%);background-clip:text;-webkit-background-clip:text}
 .hero-typographic .hero-name .hero-name-period{color:#dff5ff;-webkit-text-stroke:0;text-shadow:0 0 18px rgba(190,230,250,.9)}
+
+
+/* Mobile hero fix: keep identity content and reactor in separate rows */
+@media (max-width: 760px) {
+  .hero-typographic {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    min-height: auto;
+    padding: 72px 0 88px;
+    overflow: hidden;
+  }
+  .hero-typographic .hero-identity {
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+  }
+  .hero-typographic .hero-name {
+    font-size: clamp(58px, 13.4vw, 96px);
+    max-width: 100%;
+  }
+  .hero-typographic .hero-native-name {
+    font-size: clamp(25px, 5.2vw, 32px);
+  }
+  .hero-typographic .hero-role,
+  .hero-typographic .hero-description {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .hero-typographic .hero-tech-visual {
+    grid-row: 2;
+    width: min(100%, 430px);
+    height: clamp(280px, 72vw, 360px);
+    margin: 24px auto 0;
+  }
+  .hero-typographic .reactor {
+    width: min(320px, 78vw);
+  }
+  .hero-typographic .visual-index {
+    right: 3%;
+    bottom: 5%;
+  }
+}
+@media (max-width: 390px) {
+  .hero-typographic .hero-name {
+    font-size: clamp(54px, 13.2vw, 62px);
+  }
+  .hero-typographic .hero-signature {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+}
