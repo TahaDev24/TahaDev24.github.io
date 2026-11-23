@@ -455,3 +455,57 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
     margin-inline: auto;
   }
 }
+
+
+/* 2026-11-23 — clean monochrome, single-line identity */
+.hero-typographic .hero-name-wrap{
+  width:100%;display:flex;align-items:center;justify-content:center;
+}
+.hero-typographic .hero-name{
+  display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
+  align-items:baseline!important;justify-content:center!important;gap:.19em;
+  width:100%;margin:0!important;padding:.08em 0 .16em;
+  white-space:nowrap;direction:ltr;text-align:center;
+  font-family:var(--en),Arial,sans-serif;
+  font-size:clamp(40px,6.5vw,88px)!important;
+  font-weight:800!important;line-height:1!important;
+  letter-spacing:-.075em!important;
+  color:#f4f4f4;
+  text-shadow:0 0 1px rgba(255,255,255,.7),0 0 26px rgba(235,235,235,.17),0 12px 48px rgba(255,255,255,.08);
+}
+.hero-typographic .hero-name .hero-name-first,
+.hero-typographic .hero-name .hero-name-last{
+  display:inline!important;margin:0!important;
+  color:transparent!important;-webkit-text-stroke:0!important;
+  background:linear-gradient(180deg,#fff 0%,#d9d9d9 38%,#f7f7f7 56%,#8f8f8f 100%);
+  background-size:100% 180%;background-position:50% 0;
+  -webkit-background-clip:text;background-clip:text;
+  animation:metallic-shift 7s ease-in-out infinite alternate!important;
+  filter:none;
+}
+.hero-typographic .hero-name .hero-name-period{
+  color:#fff!important;-webkit-text-stroke:0!important;
+  text-shadow:0 0 15px rgba(255,255,255,.42)!important;
+}
+@keyframes metallic-shift{to{background-position:50% 100%}}
+.hero-typographic:before{
+  background:radial-gradient(ellipse at 48% 48%,rgba(235,235,235,.075),transparent 48%)!important;
+}
+.hero-typographic .hero-tech-visual{filter:grayscale(1);opacity:.88}
+.hero-typographic .hero-divider span{
+  background:linear-gradient(90deg,rgba(220,220,220,.55),rgba(220,220,220,.025))!important;
+}
+.hero-typographic .hero-divider span:last-child{
+  background:linear-gradient(90deg,rgba(220,220,220,.025),rgba(220,220,220,.38))!important;
+}
+@media(max-width:760px){
+  .hero-typographic .hero-name{font-size:clamp(31px,8.8vw,58px)!important;letter-spacing:-.07em!important;gap:.16em}
+  .hero-typographic .hero-name-wrap{width:100%}
+}
+@media(max-width:360px){
+  .hero-typographic .hero-name{font-size:clamp(28px,8.3vw,31px)!important;letter-spacing:-.075em!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-typographic .hero-name .hero-name-first,
+  .hero-typographic .hero-name .hero-name-last{animation:none!important}
+}
