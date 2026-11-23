@@ -373,3 +373,85 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
     row-gap: 8px;
   }
 }
+
+
+/* Identity typography refinement — only the area above the hero divider */
+@media (max-width: 760px) {
+  .hero-name-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-typographic .hero-name {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    gap: 0;
+    font-size: clamp(54px, 12.4vw, 88px);
+    line-height: .91;
+    letter-spacing: -.075em;
+    font-weight: 700;
+    text-shadow: 0 5px 34px rgba(190,211,225,.12);
+  }
+  .hero-typographic .hero-name .hero-name-first {
+    color: #e8edf1;
+    animation: none;
+  }
+  .hero-typographic .hero-name .hero-name-last {
+    margin-top: .11em;
+    color: #b7c5cf;
+    -webkit-text-stroke: 0;
+    background: linear-gradient(105deg,#71818d 0%,#e7edf1 28%,#9eafbb 52%,#e1e8ed 76%,#81929e 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: none;
+  }
+  .hero-typographic .hero-name .hero-name-period {
+    color: #e1e9ef;
+    text-shadow: 0 0 12px rgba(190,220,238,.35);
+  }
+  .hero-typographic .hero-native-name {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0 0;
+    font-size: clamp(25px, 6vw, 32px);
+    letter-spacing: -.025em;
+    animation: none;
+  }
+  .hero-typographic .hero-divider {
+    margin: 18px auto 17px;
+  }
+}
+@media (min-width: 761px) {
+  .hero-name-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-typographic .hero-name {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    font-size: clamp(76px, 8.2vw, 112px);
+    line-height: .9;
+    letter-spacing: -.075em;
+  }
+  .hero-typographic .hero-name .hero-name-last {
+    -webkit-text-stroke: 0;
+    color: #b7c5cf;
+    background: linear-gradient(105deg,#71818d 0%,#e7edf1 28%,#9eafbb 52%,#e1e8ed 76%,#81929e 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+  .hero-typographic .hero-native-name {
+    width: 100%;
+    text-align: center;
+    margin-top: 24px;
+  }
+  .hero-typographic .hero-divider {
+    margin-inline: auto;
+  }
+}
