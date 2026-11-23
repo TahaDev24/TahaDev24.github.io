@@ -316,3 +316,8 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
 @media(prefers-reduced-motion:reduce){
  .hero-typographic:before,.hero-typographic .hero-name-first,.hero-typographic .hero-name-last,.hero-typographic .hero-native-name,.reactor-halo,.ring-outer:before,.ring-middle{animation:none!important}
 }
+
+/* Final cascade: metallic gradient wordmark overrides earlier hero rules */
+.hero-typographic .hero-name .hero-name-first{color:#f2f6f8}
+.hero-typographic .hero-name .hero-name-last{margin-top:.17em;color:transparent;-webkit-text-stroke:1px rgba(210,226,237,.9);background:linear-gradient(110deg,#71818d 4%,#f0f5f8 29%,#879aa8 53%,#e8f0f5 76%,#667985 100%);background-clip:text;-webkit-background-clip:text}
+.hero-typographic .hero-name .hero-name-period{color:#dff5ff;-webkit-text-stroke:0;text-shadow:0 0 18px rgba(190,230,250,.9)}
