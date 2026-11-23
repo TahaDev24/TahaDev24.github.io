@@ -9,7 +9,7 @@
   const fctx = field && field.getContext("2d", {alpha:true, desynchronized:true});
   if (field && fctx) {
     const s = {w:0,h:0,dpr:1,items:[],raf:0,last:0,px:0,py:0,tx:0,ty:0,visible:true,running:false};
-    const count = () => Math.min(coarse.matches ? 74 : 126, Math.max(coarse.matches ? 50 : 86, Math.round(innerWidth*innerHeight/(coarse.matches?12500:9600))));
+    const count = () => Math.min(coarse.matches ? 100 : 170, Math.max(coarse.matches ? 68 : 116, Math.round(innerWidth*innerHeight/(coarse.matches?10500:7600))));
     function make(initial=true) {
       const depth = Math.pow(Math.random(),1.7);
       return {x:rand(0,s.w),y:initial?rand(0,s.h):rand(-20,-3),z:depth,r:rand(.35,.8)+depth*.65,
@@ -29,11 +29,11 @@
       if(p.kind==="shard") {
         fctx.shadowBlur=0;
         const g=fctx.createLinearGradient(-p.length,0,p.length,0);
-        g.addColorStop(0,"rgba(150,168,182,0)");g.addColorStop(.5,"rgba(192,205,215,"+alpha+")");g.addColorStop(1,"rgba(150,168,182,0)");
+        g.addColorStop(0,"rgba(170,170,170,0)");g.addColorStop(.5,"rgba(225,225,225,"+alpha+")");g.addColorStop(1,"rgba(170,170,170,0)");
         fctx.strokeStyle=g;fctx.lineWidth=.45+p.z*.65;fctx.beginPath();fctx.moveTo(-p.length,0);fctx.lineTo(p.length,0);fctx.stroke();
       } else {
         const g=fctx.createRadialGradient(-p.r*.3,-p.r*.3,0,0,0,p.r*2.1);
-        g.addColorStop(0,"rgba(205,215,223,"+Math.min(.36,alpha+.08)+")");g.addColorStop(.38,"rgba(150,165,177,"+alpha+")");g.addColorStop(1,"rgba(100,119,135,0)");
+        g.addColorStop(0,"rgba(242,242,242,"+Math.min(.36,alpha+.08)+")");g.addColorStop(.38,"rgba(185,185,185,"+alpha+")");g.addColorStop(1,"rgba(125,125,125,0)");
         fctx.fillStyle=g;fctx.beginPath();fctx.arc(0,0,p.r*2.1,0,Math.PI*2);fctx.fill();
       }
       fctx.restore();
