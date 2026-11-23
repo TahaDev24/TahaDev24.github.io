@@ -594,3 +594,137 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:15px;fl
     font-size: clamp(33px, 11.5vw, 41px) !important;
   }
 }
+
+
+/* 2026-11-23 — editorial wordmark with restrained cinematic lighting */
+.hero-typographic .hero-identity{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+.hero-typographic .hero-name-wrap{
+  position:relative;
+  width:100%;
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  margin:0;
+}
+.hero-typographic .hero-name-wrap:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:18%;
+  top:50%;
+  width:72%;
+  height:145%;
+  transform:translateY(-50%);
+  background:radial-gradient(ellipse,rgba(226,235,242,.13),rgba(170,190,205,.045) 38%,transparent 72%);
+  filter:blur(17px);
+  pointer-events:none;
+}
+.hero-typographic .hero-name{
+  width:max-content!important;
+  max-width:100%;
+  margin:0!important;
+  padding:0!important;
+  justify-content:flex-start!important;
+  align-items:baseline!important;
+  gap:.14em!important;
+  white-space:nowrap;
+  text-align:left!important;
+  font-size:clamp(70px,7.2vw,94px)!important;
+  line-height:1!important;
+  letter-spacing:-.078em!important;
+  text-shadow:0 2px 18px rgba(235,242,247,.13),0 12px 42px rgba(190,210,224,.08);
+}
+.hero-typographic .hero-name .hero-name-first,
+.hero-typographic .hero-name .hero-name-last{
+  margin:0!important;
+  -webkit-text-stroke:0!important;
+  background:linear-gradient(180deg,#fff 0%,#d9dfe4 42%,#f4f6f8 58%,#929ba2 100%);
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+.hero-typographic .hero-divider{
+  margin:24px auto 19px!important;
+}
+.hero-typographic .hero-role,
+.hero-typographic .hero-description,
+.hero-typographic .hero-actions,
+.hero-typographic .hero-signature{
+  align-self:stretch;
+  text-align:center;
+  justify-content:center;
+}
+@media(max-width:760px){
+  .hero-typographic{
+    min-height:0!important;
+    align-items:flex-start!important;
+    padding:34px 0 76px!important;
+  }
+  .hero-typographic .hero-identity{
+    width:100%;
+    align-items:center!important;
+  }
+  .hero-typographic .hero-name-wrap{
+    justify-content:flex-start!important;
+    min-height:58px;
+  }
+  .hero-typographic .hero-name{
+    font-size:clamp(37px,12.2vw,52px)!important;
+    letter-spacing:-.078em!important;
+    gap:.13em!important;
+  }
+  .hero-typographic .hero-name-wrap:before{
+    left:10%;
+    width:88%;
+    height:160%;
+    opacity:.85;
+  }
+  .hero-typographic .hero-divider{
+    width:clamp(150px,48vw,230px);
+    margin:23px auto 17px!important;
+  }
+  .hero-typographic .hero-role{
+    font-size:clamp(15px,4.2vw,19px)!important;
+    line-height:1.8;
+  }
+  .hero-typographic .hero-description{
+    max-width:570px;
+    margin:13px auto 22px!important;
+    font-size:12px;
+    line-height:2.2;
+  }
+  .hero-typographic .hero-actions{
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    gap:10px;
+  }
+  .hero-typographic .hero-actions .action{
+    flex:1 1 0;
+    min-width:0;
+    padding-inline:10px;
+  }
+  .hero-typographic .hero-signature{
+    margin-top:25px;
+    font-size:7px;
+    letter-spacing:.12em;
+  }
+  .hero-typographic .hero-tech-visual{
+    margin-top:12px!important;
+  }
+}
+@media(max-width:360px){
+  .hero-typographic .hero-name{
+    font-size:clamp(34px,11.8vw,42px)!important;
+  }
+  .hero-typographic .hero-actions .action{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-typographic .hero-name .hero-name-first,
+  .hero-typographic .hero-name .hero-name-last{animation:none!important}
+}
